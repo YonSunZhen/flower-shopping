@@ -4,10 +4,8 @@
       <view class="weui-search-bar__form">
         <view class="weui-search-bar__box">
           <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-          <!-- <input  auto-focus /> -->
+          <!-- bindconfirm='toSearch'实现获取数据 -->
           <input type="text " class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" confirm-type="search" bindconfirm='toSearch' />
-          <!-- <input class="weui-input" type="text" placeholder="请输入文本"/> -->
-          <!-- <input  class="weui-search-bar__input" placeholder="搜索" auto-focus /> -->
           <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
             <icon type="clear" size="14"></icon>
           </view>
@@ -24,7 +22,7 @@
         <view class="category-list">
           <view class="category-column">
             <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">1</view>
+            <view class="category-title">分类1</view>
           </view>          
         </view>
       </view>
@@ -32,7 +30,7 @@
         <view class="category-list">
           <view class="category-column">
             <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">1</view>
+            <view class="category-title">分类2</view>
           </view>          
         </view>
       </view>
@@ -40,7 +38,7 @@
         <view class="category-list">
           <view class="category-column">
             <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">1</view>
+            <view class="category-title">分类3</view>
           </view>          
         </view>
       </view>
@@ -48,7 +46,7 @@
         <view class="category-list">
           <view class="category-column">
             <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">1</view>
+            <view class="category-title">分类4</view>
           </view>          
         </view>
       </view>
@@ -56,7 +54,15 @@
         <view class="category-list">
           <view class="category-column">
             <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">1</view>
+            <view class="category-title">分类5</view>
+          </view>          
+        </view>
+      </view>
+      <!-- <view class="category-box" style=''>
+        <view class="category-list">
+          <view class="category-column">
+            <image class="category-imgbox" src="../../images/11.bmp"></image>
+            <view class="category-title">分类6</view>
           </view>          
         </view>
       </view>
@@ -64,7 +70,7 @@
         <view class="category-list">
           <view class="category-column">
             <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">1</view>
+            <view class="category-title">分类7</view>
           </view>          
         </view>
       </view>
@@ -72,7 +78,7 @@
         <view class="category-list">
           <view class="category-column">
             <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">1</view>
+            <view class="category-title">分类8</view>
           </view>          
         </view>
       </view>
@@ -80,7 +86,7 @@
         <view class="category-list">
           <view class="category-column">
             <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">1</view>
+            <view class="category-title">分类9</view>
           </view>          
         </view>
       </view>
@@ -88,18 +94,10 @@
         <view class="category-list">
           <view class="category-column">
             <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">1</view>
+            <view class="category-title">分类10</view>
           </view>          
         </view>
-      </view>
-      <view class="category-box" style=''>
-        <view class="category-list">
-          <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">1</view>
-          </view>          
-        </view>
-      </view>
+      </view> -->
     </scroll-view>
   </view>
   <view class='swiper-container'>
@@ -132,7 +130,86 @@
     </view>
   </view>
   <view class='space'></view>
-  <view class='recommendList'></view>
-  <view class='goodList'></view>
-  <view class='no-more-goods'></view>
+  <view class='recommendList'>
+        <view class="weui-loadmore weui-loadmore_line">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">爆品推荐</view>
+    </view>
+    <view class="goods-container">
+      <view class="goods-box" bindtap='toDetailsTap' data-id="001">
+        <view class="img-box">
+          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="goods-title">茉莉花</view>
+        <view style='display:flex;'>
+          <view class="goods-price">¥100</view>
+          <!-- <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view> -->
+        </view>
+      </view>
+      <view class="goods-box">
+        <view class="img-box">
+          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="goods-title">茉莉花</view>
+        <view style='display:flex;'>
+          <view class="goods-price">¥100</view>
+          <!-- <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view> -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='goodList'>
+    <view class="weui-loadmore weui-loadmore_line">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">商品列表</view>
+    </view>
+    <view class="goods-container">
+      <view class="goods-box">
+        <view class="img-box">
+          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="goods-title">茉莉花</view>
+        <view style='display:flex;'>
+          <view class="goods-price">¥100</view>
+          <!-- <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view> -->
+        </view>
+      </view>
+      <view class="goods-box">
+        <view class="img-box">
+          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="goods-title">茉莉花</view>
+        <view style='display:flex;'>
+          <view class="goods-price">¥100</view>
+          <!-- <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view> -->
+        </view>
+      </view>
+      <view class="goods-box">
+        <view class="img-box">
+          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="goods-title">茉莉花</view>
+        <view style='display:flex;'>
+          <view class="goods-price">¥100</view>
+        </view>
+      </view>
+      <view class="goods-box">
+        <view class="img-box">
+          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="goods-title">茉莉花</view>
+        <view style='display:flex;'>
+          <view class="goods-price">¥100</view>
+        </view>
+      </view>
+      <view class="goods-box">
+        <view class="img-box">
+          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
+        </view>
+        <view class="goods-title">茉莉花</view>
+        <view style='display:flex;'>
+          <view class="goods-price">¥100</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='no-more-goods'>没有更多啦</view>
 </view>

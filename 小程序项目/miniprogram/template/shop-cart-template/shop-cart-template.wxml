@@ -1,0 +1,42 @@
+<template name="no-goods">
+    <view class="title-box">
+        购物车空空如也～
+    </view>
+    <view class="to-index-btn" bindtap="toIndexPage">
+        去逛逛
+    </view>
+</template>
+
+<template name="cart-goods-list">
+    <view class='list-top'>
+      <view class="label">微商城</view>
+      <view class="edit-btn"  bindtap="editTap">编辑</view>
+    </view>
+    <view class='goodsList'>
+      <view class='a-gooods'>
+        <view class="a-goods-conts active" >
+          <view class='goods-info'>
+            <view class='img-box'>
+              <image class='img' src='../../images/flower.jpg'></image>
+            </view>
+            <view class='text-box'>
+              <view class="goods-title">好花</view>
+              <view class="goods-price">¥ 34</view>
+              <view class="buy-num">
+                <view class="jian-btn {{item.number==1? 'disabled' : ''}}" catchtap="jianBtnTap" data-index="{{index}}">-</view>
+                <input  type="number" value="1" disabled/>
+                <view class="jia-btn {{item.number==curTouchGoodStore? 'disabled' : ''}}" catchtap="jiaBtnTap" data-index="{{index}}">+</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='jiesuan-box'>
+      <view class="left-price">
+        <view class="all-selected  {{allSelect?'active':''}}" bindtap="bindAllSelect">全选</view>
+        <view class="total" hidden="{{noSelect}}">合计：¥ 100</view>
+      </view>
+      <view class="to-pay-btn {{noSelect?'no-select':''}}"  bindtap="toPayOrder">去结算</view>
+    </view>
+</template>

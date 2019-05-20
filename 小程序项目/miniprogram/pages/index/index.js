@@ -37,6 +37,15 @@ Page({
   toSearch: function(e) {
     console.log(e.detail.value);
   },
+
+  toDetailsTap: function(e) {
+    wx.navigateTo({
+      url: '../goods-details/goods-details',
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
+  },
  
   onLoad: function() {
     if (!wx.cloud) {
