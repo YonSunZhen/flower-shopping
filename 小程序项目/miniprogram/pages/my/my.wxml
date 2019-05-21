@@ -1,42 +1,62 @@
-<view class='container'>
-  <view class='userinfo'>
-    <image class="userinfo-avatar" src="../../images/11.bmp" background-size="cover"></image>
-		<text class="userinfo-nickname">皮皮虾</text>
-  </view>
-  <view style="height:10rpx;background: #eee;width:100%;"></view>
-  <view class='my-item'>
-    <navigator url="/pages/order-list/index" hover-class="navigator-hover">我的订单</navigator>
-  </view>
-  <view class="order-shortcut">
-    <view class='item' bindtap='goOrder' data-type="0">
-      <image class="icon" src="../../images/order/topay.png" background-size="cover"></image>
-      <view class='text'>待付款</view>
+<block wx:if="{{!isLogin}}">
+  <view class='isLogin'>您还未登录，点进按钮授权登录</view>
+  <view><button class="weui-btn" open-type="getUserInfo" type="warn" bindgetuserinfo='login'>点击授权登录</button></view>
+</block>
+<block wx:if="{{isLogin}}">
+  <view class='container'>
+    <view class='userinfo'>
+      <image class="userinfo-avatar" src="../../images/11.bmp" background-size="cover"></image>
+      <text class="userinfo-nickname">皮皮虾</text>
     </view>
-    <view class='item' bindtap='goOrder' data-type="1">
-      <image class="icon" src="../../images/order/fahuo.png" background-size="cover"></image>
-      <view class='text'>待发货</view>
-    </view>
-    <view class='item' bindtap='goOrder' data-type="2">
-      <image class="icon" src="../../images/order/shouhuo.png" background-size="cover"></image>
-      <view class='text'>待收货</view>
-    </view>
-    <view class='item' bindtap='goOrder' data-type="3">
-      <image class="icon" src="../../images/order/pj.png" background-size="cover"></image>
-      <view class='text'>待评价</view>
-    </view>
+    <view style="height:10rpx;background: #eee;width:100%;"></view>
+    <block wx:if="{{!isManager}}">
+      <view class='my-item'>
+        <navigator url="/pages/order-list/index" hover-class="navigator-hover">我的订单</navigator>
+      </view>
+      <view class="order-shortcut">
+        <view class='item' bindtap='goOrder' data-type="0">
+          <image class="icon" src="../../images/order/topay.png" background-size="cover"></image>
+          <view class='text'>待付款</view>
+        </view>
+        <view class='item' bindtap='goOrder' data-type="1">
+          <image class="icon" src="../../images/order/fahuo.png" background-size="cover"></image>
+          <view class='text'>待发货</view>
+        </view>
+        <view class='item' bindtap='goOrder' data-type="2">
+          <image class="icon" src="../../images/order/shouhuo.png" background-size="cover"></image>
+          <view class='text'>待收货</view>
+        </view>
+        <view class='item' bindtap='goOrder' data-type="3">
+          <image class="icon" src="../../images/order/pj.png" background-size="cover"></image>
+          <view class='text'>待评价</view>
+        </view>
+      </view>
+      <view style="height:10rpx;background: #eee;width:100%;"></view>
+      <view class='my-item'>
+        <navigator url="/pages/asset/index" hover-class="navigator-hover">资金明细</navigator>
+      </view>
+      <view class='my-item'>
+        <navigator url="/pages/asset/index" hover-class="navigator-hover">资金明细</navigator>
+      </view>
+      <view class='my-item'>
+        <navigator url="/pages/asset/index" hover-class="navigator-hover">资金明细</navigator>
+      </view>
+      <view style="height:10rpx;background: #eee;width:100%;"></view>
+      <view class="about" bindtap="aboutUs">
+        关于我们
+      </view>
+    </block>
+      
+    <block wx:if="{{isManager}}">
+      <view class='my-item'>
+        <navigator url="/pages/order-list/index" hover-class="navigator-hover">类型管理</navigator>
+      </view>
+      <view class='my-item'>
+        <navigator url="/pages/order-list/index" hover-class="navigator-hover">订单管理</navigator>
+      </view>
+      <view class='my-item'>
+        <navigator url="/pages/order-list/index" hover-class="navigator-hover">类型管理</navigator>
+      </view>
+    </block>
   </view>
-  <view style="height:10rpx;background: #eee;width:100%;"></view>
-  <view class='my-item'>
-    <navigator url="/pages/asset/index" hover-class="navigator-hover">资金明细</navigator>
-  </view>
-  <view class='my-item'>
-    <navigator url="/pages/asset/index" hover-class="navigator-hover">资金明细</navigator>
-  </view>
-  <view class='my-item'>
-    <navigator url="/pages/asset/index" hover-class="navigator-hover">资金明细</navigator>
-  </view>
-  <view style="height:10rpx;background: #eee;width:100%;"></view>
-  <view class="about" bindtap="aboutUs">
-    关于我们
-  </view>
-</view>
+</block>
