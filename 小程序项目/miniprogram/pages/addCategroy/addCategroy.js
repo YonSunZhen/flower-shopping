@@ -49,6 +49,26 @@ Page({
       urls: this.data.files // 需要预览的图片http链接列表
     })
   },
+  //取消图片的上传
+  deleteImage: function(e) {
+    var that = this;
+    var images = that.data.files;
+    var index = e.currentTarget.dataset.index; //获取当前长按图片下标
+    wx.showModal({
+      title: '系统提醒',
+      content: '确定要删除此图片吗？',
+      success: function (res) {
+        if (res.confirm) {
+          images.splice(index, 1);
+        } else if (res.cancel) {
+          return false;
+        }
+        that.setData({
+          files: images
+        });
+      }
+    })
+  },
 
   bindSave: function(e) {
     const categroyName = e.detail.value.categroyName;
