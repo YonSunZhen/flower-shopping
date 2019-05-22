@@ -3,7 +3,7 @@
     <swiper class="swiper_box">
       <block>
         <swiper-item>
-          <image src="../../images/11.bmp" class="slide-image" width="355" height="150" mode="aspectFit" lazy-load="true" />
+          <image src="../../images/11.jpg" class="slide-image" width="355" height="150" mode="aspectFit" lazy-load="true" />
         </swiper-item>
       </block>
     </swiper>
@@ -14,7 +14,7 @@
     </view>
   </view>
   <view class='goods-info'>
-    <view class="goods-title">茉莉花</view>
+    <view class="goods-title">茉莉</view>
     <view class="goods-price" style="padding-left:35rpx;">¥ 100</view>
     <view class="goods-price" style="color:#999;font-size:24rpx;">购买10次</view>
     <view class="goods-price" style="color:#999;font-size:24rpx;">剩余量100</view>

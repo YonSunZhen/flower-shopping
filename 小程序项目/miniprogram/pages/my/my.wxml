@@ -5,7 +5,7 @@
 <block wx:if="{{isLogin}}">
   <view class='container'>
     <view class='userinfo'>
-      <image class="userinfo-avatar" src="../../images/11.bmp" background-size="cover"></image>
+      <image class="userinfo-avatar" src="../../images/11.jpg" background-size="cover"></image>
       <text class="userinfo-nickname">皮皮虾</text>
     </view>
     <view style="height:10rpx;background: #eee;width:100%;"></view>
@@ -49,13 +49,27 @@
       
     <block wx:if="{{isManager}}">
       <view class='my-item'>
-        <navigator url="/pages/order-list/index" hover-class="navigator-hover">类型管理</navigator>
-      </view>
-      <view class='my-item'>
         <navigator url="/pages/order-list/index" hover-class="navigator-hover">订单管理</navigator>
       </view>
+      <view style="height:10rpx;background: #eee;width:100%;"></view>
       <view class='my-item'>
-        <navigator url="/pages/order-list/index" hover-class="navigator-hover">类型管理</navigator>
+        <navigator url="/pages/addCategroy/addCategroy" hover-class="navigator-hover">添加类型</navigator>
+      </view>
+      <view class='my-item'>
+        <navigator url="/pages/order-list/index" hover-class="navigator-hover">删除类型</navigator>
+      </view>
+      <view class='my-item'>
+        <navigator url="/pages/order-list/index" hover-class="navigator-hover">编辑管理</navigator>
+      </view>
+      <view style="height:10rpx;background: #eee;width:100%;"></view>
+      <view class='my-item'>
+        <navigator url="/pages/order-list/index" hover-class="navigator-hover">添加商品</navigator>
+      </view>
+      <view class='my-item'>
+        <navigator url="/pages/order-list/index" hover-class="navigator-hover">删除商品</navigator>
+      </view>
+      <view class='my-item'>
+        <navigator url="/pages/order-list/index" hover-class="navigator-hover">编辑商品</navigator>
       </view>
     </block>
   </view>

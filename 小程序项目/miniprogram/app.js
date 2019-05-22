@@ -32,6 +32,15 @@ App({
               //   url: '/pages/index/index'
               // })
               this.isLogin = true;
+              wx.cloud.callFunction({
+                name: 'login'
+              }).then(res => {
+                const user_openid = res.result.openid;
+                //这里添加管理员的openid
+                if (user_openid === "oTy3U5B5uMil2A8ltOIijqEbXoo8") {
+                  this.isManager = true;
+                }
+              })
               console.log(res);
               console.log("已经授权登录");
             }

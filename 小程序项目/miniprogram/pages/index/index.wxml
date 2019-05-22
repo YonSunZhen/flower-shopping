@@ -21,7 +21,7 @@
       <view class="category-box" style=''>
         <view class="category-list">
           <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.bmp"></image>
+            <image class="category-imgbox" src="../../images/11.jpg"></image>
             <view class="category-title">分类1</view>
           </view>          
         </view>
@@ -29,7 +29,7 @@
       <view class="category-box" style=''>
         <view class="category-list">
           <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.bmp"></image>
+            <image class="category-imgbox" src="../../images/11.jpg"></image>
             <view class="category-title">分类2</view>
           </view>          
         </view>
@@ -37,7 +37,7 @@
       <view class="category-box" style=''>
         <view class="category-list">
           <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.bmp"></image>
+            <image class="category-imgbox" src="../../images/11.jpg"></image>
             <view class="category-title">分类3</view>
           </view>          
         </view>
@@ -45,7 +45,7 @@
       <view class="category-box" style=''>
         <view class="category-list">
           <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.bmp"></image>
+            <image class="category-imgbox" src="../../images/11.jpg"></image>
             <view class="category-title">分类4</view>
           </view>          
         </view>
@@ -53,7 +53,7 @@
       <view class="category-box" style=''>
         <view class="category-list">
           <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.bmp"></image>
+            <image class="category-imgbox" src="../../images/11.jpg"></image>
             <view class="category-title">分类5</view>
           </view>          
         </view>

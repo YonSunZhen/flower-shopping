@@ -2,7 +2,7 @@ const db = wx.cloud.database();
 //增加用户
 const addUser = (data) => {
   return new Promise((resolve, reject) => {
-    db.collection('user').add({
+    db.collection('user_info').add({
       data: data
     }).then(res => {
       // console.log('--------');
@@ -23,7 +23,7 @@ const addUser = (data) => {
 //根据user_openid查找用户是否已经存在
 const isExist = (user_openid) => {
   return new Promise((resolve, reject) => {
-    db.collection('user').where({
+    db.collection('user_info').where({
       user_openid: user_openid
     }).get().then(res => {
       console.log("---------")
