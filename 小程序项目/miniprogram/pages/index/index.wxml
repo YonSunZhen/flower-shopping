@@ -21,7 +21,7 @@
       <view class="category-box" style=''>
         <view class="category-list">
           <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.jpg"></image>
+            <image class="category-imgbox" src="cloud://env-1-4y8b3.656e-env-1-4y8b3-1259246708/1558577622646.png"></image>
             <view class="category-title">分类1</view>
           </view>          
         </view>

@@ -1,5 +1,5 @@
 // miniprogram/pages/my/my.js
-const user = require('../../api/user.js');
+const user = require('../../api/user_info.js');
 Page({
 
   /**
@@ -8,7 +8,8 @@ Page({
   data: {
     isLogin: "",
     username: '',
-    isManager: ''
+    isManager: '',
+    userInfo: { } //用户的头像和姓名
   },
 
   login: function(event) {
@@ -17,7 +18,10 @@ Page({
     this.setData({
       username: JSON.parse(event.detail.rawData).nickName
     })
-    const username = event.detail.rawData.nickname;
+    this.setData({
+      userInfo: event.detail.userInfo
+    })
+    // const username = event.detail.rawData.nickname;
     if (event.detail.userInfo) {
       //获取用户的openid
       wx.cloud.callFunction({
@@ -46,8 +50,7 @@ Page({
         }
         //添加用户到数据库(添加时检查一下用户是否已存在)
         user.isExist(user_openid).then(res => {
-          console.log("qqqqqqqqqqq");
-          console.log(res);
+          // console.log(res);
           if(res === "false"){
             user.addUser(userData).then((res) => {
               if (res === "true") {
@@ -60,20 +63,10 @@ Page({
             console.log("用户已存在");
           }
         })
-        // console.log(res);
       })
-      console.log(getApp().isLogin);
       console.log("登陆成功");
     }else{
-      // wx.cloud.callFunction({
-      //   name: 'login',
-      //   data: {
-      //     test: 1
-      //   }
-      // }).then(res => {
-      //   console.log(res);
-      // })
-      console.log("失败");
+      console.log("登陆失败");
     }  
   },
 
@@ -86,14 +79,17 @@ Page({
     });
     this.setData({
       isLogin: getApp().isLogin
-    })
-    console.log(this.data.isLogin);
+    });
 
     if (getApp().isManager) {
       this.setData({
         isManager: getApp().isManager
       })
     }
+
+    this.setData({
+      userInfo: getApp().userInfo
+    })
   },
 
   /**
@@ -107,7 +103,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this;
+    let userInfo = wx.getStorageSync('userInfo');
+    if (!userInfo) {
+      // app.goLoginPageTimeOut()
+    } else {
+      that.setData({
+        userInfo: userInfo
+      })
+    }
   },
 
   /**

@@ -1,14 +1,19 @@
-const categroy = require('../../api/product_categroy.js');
+// pages/addProduct/addProduct.js
 const db = wx.cloud.database();
+const categroy = require('../../api/product_categroy.js');
+const product = require('../../api/product_info.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    files: [], //存放图片的
-    fileIds: '', //存放服务器中图片的云id(路径)
-    categroyName: ''
+    categroyList: [{"id":1,"name":"鲜花"},{"id":2,"name":"蔬菜"}],//所有的类型
+    showCategroyStr: '请选择类型',
+    statusList: ['下架','上架'],//商品状态的值
+    showStatusStr: '请选择状态',
+    product_img: '',
+    files: [] //暂时存放的数组
   },
 
   chooseImage: function (e) {
@@ -27,16 +32,15 @@ Page({
             success: function (res) {
               if (res.confirm) {
                 // console.log('用户点击确定');
-                // console.log(that.data.files);
               }
             }
           });
-        }else{
+        } else {
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           that.setData({
             files: that.data.files.concat(res.tempFilePaths)
           });
-        }     
+        }
       }
     })
   },
@@ -48,7 +52,7 @@ Page({
     })
   },
   //取消图片的上传
-  deleteImage: function(e) {
+  deleteImage: function (e) {
     var that = this;
     var images = that.data.files;
     var index = e.currentTarget.dataset.index; //获取当前长按图片下标
@@ -69,11 +73,24 @@ Page({
     })
   },
 
-  bindSave: function(e) {
-    const categroyName = e.detail.value.categroyName;
+  //当选择器的选项发生改变时触发
+  bindCategroyChange: function(e) {
+    const selectCategroy = this.data.categroyList[e.detail.value];
     this.setData({
-      categroyName: categroyName
+      showCategroyStr: selectCategroy.categroy_name
     })
+    // console.log(selectCategroy);
+  },
+
+  bindStatusChange: function(e) {
+    const selectStatus = this.data.statusList[e.detail.value];
+    this.setData({
+      showStatusStr: selectStatus
+    })
+    // console.log(e.detail.value);
+  },
+
+  bindSave: function(e) {
     wx.showLoading({
       title: '保存中',
     })
@@ -90,7 +107,7 @@ Page({
             // console.log(res);
             //记录服务器中图片的云id(路径)
             this.setData({
-              fileIds: res.fileID
+              product_img: res.fileID
             });
             resolve();
           },
@@ -101,24 +118,52 @@ Page({
 
     //传入promise数组，等所有的promise执行完在执行里面的方法
     Promise.all(promiseArr).then(res => {
+      // console.log(e.detail);
+      const productName = e.detail.value.productName;
+      const productPrice = Number(e.detail.value.productPrice);
+      const productCategroyName = this.data.categroyList[e.detail.value.productCategroy].categroy_name;
+      const productCategroyId = this.data.categroyList[e.detail.value.productCategroy]._id;
+      const productCount = Number(e.detail.value.productCount);
+      const productRemark = e.detail.value.productRemark;
+      const productState = Number(e.detail.value.productState);
+      const productDescript = e.detail.value.productDescript;
+      // console.log(productCategroyName);
       const data = {
-        categroy_name: this.data.categroyName,
-        categroy_img: this.data.fileIds,
-        createTime: db.serverDate()
+        product_name: productName,
+        categroy_id: productCategroyId,
+        price: productPrice,
+        product_img: this.data.product_img,
+        product_count: productCount,
+        product_surplus: productCount,
+        product_descript: productDescript,
+        product_state: productState,
+        publish_time: db.serverDate()
       }
-      categroy.addCategroy(data).then(res => {
-        if(res === "true"){
+      product.addProduct(data).then(res => {
+        if (res === "true") {
           wx.hideLoading();
           wx.showToast({
             title: '保存成功!'
           })
-        }else {
+        } else {
           wx.hideLoading();
           wx.showToast({
             title: '保存失败!'
           })
         }
       })
+    })
+
+  },
+
+  //获取所有类型
+  _getAllCategroy: function() {
+    categroy.getAllCategroy().then((res) => {
+      this.setData({
+        categroyList: res.data
+      })
+      // console.log('-----');
+      // console.log(res);
     })
   },
 
@@ -127,8 +172,9 @@ Page({
    */
   onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '添加类型',
+      title: '添加商品',
     })
+    this._getAllCategroy();
   },
 
   /**

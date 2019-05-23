@@ -26,8 +26,8 @@ const isExist = (user_openid) => {
     db.collection('user_info').where({
       user_openid: user_openid
     }).get().then(res => {
-      console.log("---------")
-      console.log(res.data)
+      // console.log("---------")
+      // console.log(res.data)
       // resolve(res.data);
       if (res.data.length > 0) {
         resolve("true");

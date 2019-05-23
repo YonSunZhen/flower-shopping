@@ -4,7 +4,9 @@
     "pages/shop-cart/shop-cart",
     "pages/my/my",
     "pages/goods-details/goods-details",
-    "pages/addCategroy/addCategroy"
+    "pages/addCategroy/addCategroy",
+    "pages/addProduct/addProduct",
+    "pages/delCategroy/delCategroy"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

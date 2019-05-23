@@ -2,6 +2,7 @@
 App({
   isLogin: false,//全局都可访问
   isManager: false,//是否管理员
+  userInfo: { }, //全局的用户信息
 
   onLaunch: function () {
     
@@ -17,12 +18,10 @@ App({
 
     wx.getSetting({
       success: res => {
-        console.log("11111111");
-        console.log(res);
+        // console.log(res);
         //查找是否有在数据库中，没有的话isLogin为false
         if (res.authSetting['scope.userInfo']) {
-          console.log("222222");
-          console.log(res.authSetting['scope.userInfo']);
+          // console.log(res.authSetting['scope.userInfo']);
           wx.getUserInfo({
             success: res => {
               //从数据库获取用户信息
@@ -32,6 +31,7 @@ App({
               //   url: '/pages/index/index'
               // })
               this.isLogin = true;
+              this.userInfo = res.userInfo;
               wx.cloud.callFunction({
                 name: 'login'
               }).then(res => {

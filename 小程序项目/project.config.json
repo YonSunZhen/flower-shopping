@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -63,6 +63,20 @@
 					"id": 4,
 					"name": "添加类型",
 					"pathName": "pages/addCategroy/addCategroy",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加商品",
+					"pathName": "pages/addProduct/addProduct",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "删除类型",
+					"pathName": "pages/delCategroy/delCategroy",
 					"query": "",
 					"scene": null
 				}
