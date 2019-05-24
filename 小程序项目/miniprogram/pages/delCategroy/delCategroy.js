@@ -38,8 +38,13 @@ Page({
     // console.log(this.data.selectedCategroy);
   },
 
-  test(e) {
-    console.log(e);
+  editCategroy(e) {
+    const id = e.target.dataset.id;
+    // console.log(e);
+    console.log(id);
+    wx.navigateTo({
+      url: `../editCategroy/editCategroy?id=${id}`,
+    })
   },
 
   //获取所有类型的数据

@@ -9,7 +9,7 @@
               </view>
               <view class="weui-cell__bd">{{item.categroy_name}}</view>
               <view>
-                <button class="weui-btn mini-btn" type="primary" size="mini" bindtap='test'>编辑</button>
+                <button class="weui-btn mini-btn" type="primary" size="mini" bindtap='editCategroy' data-id="{{item._id}}">编辑</button>
               </view>
           </label>
       </checkbox-group>

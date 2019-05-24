@@ -26,7 +26,19 @@ const getAllCategroy = () => {
   })
 }
 
+//根据类型id查找出一条类型
+const getOneCategroy = (id) => {
+  return new Promise((resolve,reject) => {
+    db.collection('product_categroy').doc(id).get().then(res => {
+      // res.data 包含该记录的数据
+      // console.log(res.data)
+      resolve(res.data);
+    })
+  })
+}
+
 module.exports = {
   addCategroy,
-  getAllCategroy
+  getAllCategroy,
+  getOneCategroy
 }
