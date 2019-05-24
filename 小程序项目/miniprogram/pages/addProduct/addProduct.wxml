@@ -4,31 +4,31 @@
           <view class="row-wrap">
               <view class="label">商品名称</view>
               <view class="label-right">
-                  <input name="productName" class="input" type="text" placeholder="输入商品名称" value="{{productName}}"/>
+                  <input name="productName" value='' class="input" type="text" placeholder="输入商品名称" />
               </view>
           </view>
           <view class="row-wrap">
               <view class="label">商品价格</view>
               <view class="label-right">
-                  <input name="productPrice" class="input" type="text" placeholder="输入商品价格" value="{{productPrice}}"/>
+                  <input name="productPrice" value='' class="input" type="text" placeholder="输入商品价格" />
               </view>
           </view>
           <view class="row-wrap" bindtap="selectCity">
               <view class="label">选择类型</view>
-              <picker name="productCategroy" value='{{categroyList.name}}' bindchange="bindCategroyChange" range="{{categroyList}}" range-key="categroy_name">
+              <picker name="productCategroy"  bindchange="bindCategroyChange" range="{{categroyList}}" range-key="categroy_name">
                 {{showCategroyStr}}
               </picker>
           </view>
           <view class="row-wrap">
               <view class="label">商品数量</view>
               <view class="label-right">
-                  <input name="productCount" class="input" type="text" placeholder="输入商品数量" value="{{productCount}}"/>
+                  <input name="productCount" value='' class="input" type="text" placeholder="输入商品数量" />
               </view>
           </view>
           <view class="row-wrap">
               <view class="label">商品备注</view>
               <view class="label-right">
-                  <input name="productRemark" class="input" type="text" placeholder="输入商品备注" value="{{productRemark}}"/>
+                  <input name="productRemark" value='' class="input" type="text" placeholder="输入商品备注" />
               </view>
           </view>
 
@@ -43,7 +43,7 @@
           <view class="weui-cells weui-cells_after-title">
               <view class="weui-cell">
                   <view class="weui-cell__bd">
-                      <textarea name="productDescript" class="weui-textarea" placeholder="请输入描述" value='{{productDescript}}' style="height: 3.3em" />
+                      <textarea name="productDescript" class="weui-textarea" placeholder="请输入描述"  style="height: 3.3em" />
                       <!-- <view class="weui-textarea-counter">0/200</view> -->
                   </view>
               </view>

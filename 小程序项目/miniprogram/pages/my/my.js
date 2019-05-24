@@ -32,7 +32,7 @@ Page({
       }).then(res => {
         const user_openid = res.result.openid;
         //这里添加管理员的openid
-        if (user_openid === "oTy3U5B5uMil2A8ltOIijqEbXoo8"){
+        if (user_openid === "oTy3U5B5uMil2A8ltOIijqEbXoo8" || user_openid === "oTy3U5OYZTCo6bnpq4ginf-AHfK0"){
           this.setData({
             isManager: true
           })
