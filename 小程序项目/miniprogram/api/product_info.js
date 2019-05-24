@@ -17,7 +17,23 @@ const addProduct = (data) => {
   })
 }
 
+//根据商品类型id判断是否存在这种类型的商品
+const isExist = (categroy_id) => {
+  return new Promise((resolve, reject) => {
+    db.collection('product_info').where({
+      categroy_id: categroy_id
+    }).get().then(res => {
+      if (res.data.length > 0) {
+        resolve("true");
+      } else {
+        resolve("false");
+      }
+    })
+  })
+}
+
 
 module.exports = {
-  addProduct
+  addProduct,
+  isExist
 }
