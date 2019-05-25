@@ -8,10 +8,7 @@ Page({
    */
   data: {
     categroyItems: [ ],
-    selectedCategroy: [ ]//已选中的分类id
-      // { name: 'standard is dealt for u.', value: '0', checked: true },
-      // { name: 'standard is dealicient for u.', value: '1' }
-    
+    selectedCategroy: [ ]//已选中的分类id 
   },
 
   checkboxChange: function (e) {

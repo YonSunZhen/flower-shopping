@@ -48,10 +48,10 @@
     </block>
       
     <block wx:if="{{isManager}}">
-      <view class='my-item'>
+      <!-- <view class='my-item'>
         <navigator url="/pages/order-list/index" hover-class="navigator-hover">订单管理</navigator>
       </view>
-      <view style="height:10rpx;background: #eee;width:100%;"></view>
+      <view style="height:10rpx;background: #eee;width:100%;"></view> -->
       <view class='my-item'>
         <navigator url="/pages/addCategroy/addCategroy" hover-class="navigator-hover">添加类型</navigator>
       </view>
@@ -63,7 +63,7 @@
         <navigator url="/pages/addProduct/addProduct" hover-class="navigator-hover">添加商品</navigator>
       </view>
       <view class='my-item'>
-        <navigator url="/pages/order-list/index" hover-class="navigator-hover">编辑商品</navigator>
+        <navigator url="/pages/delProduct/delProduct" hover-class="navigator-hover">编辑商品</navigator>
       </view>
     </block>
   </view>

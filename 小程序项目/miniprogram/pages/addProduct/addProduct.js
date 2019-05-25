@@ -137,6 +137,7 @@ Page({
         product_surplus: productCount,
         product_descript: productDescript,
         product_state: productState,
+        product_remark: productRemark,
         publish_time: db.serverDate()
       }
       product.addProduct(data).then(res => {

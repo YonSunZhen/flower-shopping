@@ -8,6 +8,8 @@
     "pages/addProduct/addProduct",
     "pages/delCategroy/delCategroy",
     "pages/editCategroy/editCategroy",
+    "pages/delProduct/delProduct",
+    "pages/editProduct/editProduct",
     "pages/test/test"
   ],
   "window": {

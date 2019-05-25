@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 10,
 			"list": [
 				{
 					"id": -1,
@@ -93,6 +93,20 @@
 					"pathName": "pages/editCategroy/editCategroy",
 					"query": "id= f4b905395ce601e703c48471371ad668",
 					"scene": 1001
+				},
+				{
+					"id": -1,
+					"name": "删除商品",
+					"pathName": "pages/delProduct/delProduct",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 10,
+					"name": "编辑商品",
+					"pathName": "pages/editProduct/editProduct",
+					"query": "id=6cd397ca5ce661b803f3b9fb74bc056d",
+					"scene": null
 				}
 			]
 		}

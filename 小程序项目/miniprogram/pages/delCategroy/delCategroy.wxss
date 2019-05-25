@@ -1,7 +1,3 @@
-/* pages/editCategroy/editCategroy.wxss */
-.container {
-  width: 100%;
-}
 .del{
     /* height: 100rpx; */
     position: fixed;
