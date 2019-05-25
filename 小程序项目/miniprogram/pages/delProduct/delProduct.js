@@ -174,8 +174,14 @@ Page({
     this.setData({
       pageIndex: this.data.pageIndex + 1
     })
+    const oldProductItems = this.data.productItems;
     console.log('pageIndex' + this.data.pageIndex);
     this._getAllProduct(this.data.pageIndex, this.data.pageSize,true);
+    if (oldProductItems.length == this.data.productItems.length) {
+      wx.showToast({
+        title: '数据已加载完毕',
+      })
+    }
   },
 
   /**
