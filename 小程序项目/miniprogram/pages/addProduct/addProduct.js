@@ -138,7 +138,8 @@ Page({
         product_descript: productDescript,
         product_state: productState,
         product_remark: productRemark,
-        publish_time: db.serverDate()
+        publish_time: db.serverDate(),
+        product_sale: 1 //增加商品时默认销售量为1
       }
       product.addProduct(data).then(res => {
         if (res === "true") {

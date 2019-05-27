@@ -37,6 +37,7 @@ Page({
             isManager: true
           })
           getApp().isManager = true;
+          getApp().openid = user_openid;
         }
         this.setData({
           isLogin: true

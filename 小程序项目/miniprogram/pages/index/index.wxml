@@ -1,4 +1,7 @@
 <view class='container'>
+  <!-- <view class="weui-loadmore weui-loadmore_line">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">选择类型</view>
+  </view> -->
   <view class='header'>
     <view class="weui-search-bar">
       <view class="weui-search-bar__form">
@@ -18,86 +21,14 @@
       <view class="weui-search-bar__cancel-btn"  bindtap="hideInput">取消</view>
     </view>
     <scroll-view scroll-x style='width: 100%; white-space: nowrap;'>
-      <view class="category-box" style=''>
+      <view class="category-box" wx:for="{{categroyList}}" data-categroyId="{{item._id}}" bindtap='selectCategroy'>
         <view class="category-list">
           <view class="category-column">
-            <image class="category-imgbox" src="cloud://env-1-4y8b3.656e-env-1-4y8b3-1259246708/1558577622646.png"></image>
-            <view class="category-title">分类1</view>
+            <image class="category-imgbox" src="{{item.categroy_img}}"></image>
+            <view class="category-title" style="{{selectId == index? 'color: red;': ''}}">{{item.categroy_name}}</view>
           </view>          
         </view>
       </view>
-      <view class="category-box" style=''>
-        <view class="category-list">
-          <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.jpg"></image>
-            <view class="category-title">分类2</view>
-          </view>          
-        </view>
-      </view>
-      <view class="category-box" style=''>
-        <view class="category-list">
-          <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.jpg"></image>
-            <view class="category-title">分类3</view>
-          </view>          
-        </view>
-      </view>
-      <view class="category-box" style=''>
-        <view class="category-list">
-          <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.jpg"></image>
-            <view class="category-title">分类4</view>
-          </view>          
-        </view>
-      </view>
-      <view class="category-box" style=''>
-        <view class="category-list">
-          <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.jpg"></image>
-            <view class="category-title">分类5</view>
-          </view>          
-        </view>
-      </view>
-      <!-- <view class="category-box" style=''>
-        <view class="category-list">
-          <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">分类6</view>
-          </view>          
-        </view>
-      </view>
-      <view class="category-box" style=''>
-        <view class="category-list">
-          <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">分类7</view>
-          </view>          
-        </view>
-      </view>
-      <view class="category-box" style=''>
-        <view class="category-list">
-          <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">分类8</view>
-          </view>          
-        </view>
-      </view>
-      <view class="category-box" style=''>
-        <view class="category-list">
-          <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">分类9</view>
-          </view>          
-        </view>
-      </view>
-      <view class="category-box" style=''>
-        <view class="category-list">
-          <view class="category-column">
-            <image class="category-imgbox" src="../../images/11.bmp"></image>
-            <view class="category-title">分类10</view>
-          </view>          
-        </view>
-      </view> -->
     </scroll-view>
   </view>
   <view class='swiper-container'>
@@ -131,28 +62,18 @@
   </view>
   <view class='space'></view>
   <view class='recommendList'>
-        <view class="weui-loadmore weui-loadmore_line">
+    <view class="weui-loadmore weui-loadmore_line">
       <view class="weui-loadmore__tips weui-loadmore__tips_in-line">爆品推荐</view>
     </view>
     <view class="goods-container">
-      <view class="goods-box" bindtap='toDetailsTap' data-id="001">
+      <view class="goods-box" wx:for="{{productRecommend}}" bindtap='toDetailsTap' data-productid="{{item._id}}">
         <view class="img-box">
-          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
+          <image src="{{item.product_img}}" class="image" mode="aspectFill" lazy-load="true" />
         </view>
-        <view class="goods-title">茉莉花</view>
+        <view class="goods-title">{{item.product_name}}</view>
         <view style='display:flex;'>
-          <view class="goods-price">¥100</view>
-          <!-- <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view> -->
-        </view>
-      </view>
-      <view class="goods-box">
-        <view class="img-box">
-          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
-        </view>
-        <view class="goods-title">茉莉花</view>
-        <view style='display:flex;'>
-          <view class="goods-price">¥100</view>
-          <!-- <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view> -->
+          <view class="goods-price">¥{{item.price}}</view>
+          <view class="goods-price" style='color:#aaa;'>已销售:{{item.product_sale}}</view>
         </view>
       </view>
     </view>
@@ -162,51 +83,14 @@
       <view class="weui-loadmore__tips weui-loadmore__tips_in-line">商品列表</view>
     </view>
     <view class="goods-container">
-      <view class="goods-box">
+      <view class="goods-box" wx:for="{{productList}}" bindtap='toDetailsTap' data-productid="{{item._id}}">
         <view class="img-box">
-          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
+          <image src="{{item.product_img}}" class="image" mode="aspectFill" lazy-load="true" />
         </view>
-        <view class="goods-title">茉莉花</view>
+        <view class="goods-title">{{item.product_name}}</view>
         <view style='display:flex;'>
-          <view class="goods-price">¥100</view>
+          <view class="goods-price">¥1{{item.price}}</view>
           <!-- <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view> -->
-        </view>
-      </view>
-      <view class="goods-box">
-        <view class="img-box">
-          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
-        </view>
-        <view class="goods-title">茉莉花</view>
-        <view style='display:flex;'>
-          <view class="goods-price">¥100</view>
-          <!-- <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price" style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view> -->
-        </view>
-      </view>
-      <view class="goods-box">
-        <view class="img-box">
-          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
-        </view>
-        <view class="goods-title">茉莉花</view>
-        <view style='display:flex;'>
-          <view class="goods-price">¥100</view>
-        </view>
-      </view>
-      <view class="goods-box">
-        <view class="img-box">
-          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
-        </view>
-        <view class="goods-title">茉莉花</view>
-        <view style='display:flex;'>
-          <view class="goods-price">¥100</view>
-        </view>
-      </view>
-      <view class="goods-box">
-        <view class="img-box">
-          <image src="../../images/flower.jpg" class="image" mode="aspectFill" lazy-load="true" />
-        </view>
-        <view class="goods-title">茉莉花</view>
-        <view style='display:flex;'>
-          <view class="goods-price">¥100</view>
         </view>
       </view>
     </view>

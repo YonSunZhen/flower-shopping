@@ -3,7 +3,7 @@
     <swiper class="swiper_box">
       <block>
         <swiper-item>
-          <image src="../../images/11.jpg" class="slide-image" width="355" height="150" mode="aspectFit" lazy-load="true" />
+          <image src="{{productDetail.product_img}}" class="slide-image" width="355" height="150" mode="aspectFit" lazy-load="true" />
         </swiper-item>
       </block>
     </swiper>
@@ -14,17 +14,17 @@
     </view>
   </view>
   <view class='goods-info'>
-    <view class="goods-title">茉莉</view>
-    <view class="goods-price" style="padding-left:35rpx;">¥ 100</view>
-    <view class="goods-price" style="color:#999;font-size:24rpx;">购买10次</view>
-    <view class="goods-price" style="color:#999;font-size:24rpx;">剩余量100</view>
+    <view class="goods-title">{{productDetail.product_name}}</view>
+    <view class="goods-price" style="padding-left:35rpx;">¥{{productDetail.price}}</view>
+    <view class="goods-price" style="color:#999;font-size:24rpx;">购买:{{productDetail.product_sale}}</view>
+    <view class="goods-price" style="color:#999;font-size:24rpx;">剩余量:{{productDetail.product_surplus}}</view>
   </view>
   <view class='space'></view>
   <view class='goods-des-info'>
     <view class="label-title">商品介绍</view>
     <view class="goods-text">
       <!-- <template is="wxParse" data="{{wxParseData:article.nodes}}" /> -->
-      <view>打暑假工房顶上发挥第三方或</view>
+      <view><text>{{productDetail.product_descript}}</text></view>
     </view>
   </view>
   <view class='footer-box'>
@@ -33,10 +33,54 @@
       <view style='position:absolute;bottom:10rpx;'> 客服 </view>
     </view>
     <view class="shop-cart-btn" bindtap="goShopCar">
-      <view class="shop-num">(1)</view>
+      <!-- <view class="shop-num" wx:if="{{isLogin}}">(1)</view> -->
       <view style='position:absolute;bottom:10rpx;'> 购物车 </view>
     </view>
     <view class="join-shop-cart" bindtap="toAddShopCar">加入购物车</view>
     <view class="now-buy" bindtap="tobuy">立即购买</view>
+  </view>
+
+  <!-- 99999 -->
+  <view class="show-popup" hidden="{{hideShopPopup}}" catchtouchmove="true">
+    <view class="popup-mask" bindtap="closePopupTap"></view>
+    <view class="popup-contents">
+      <view class="pop-goods-info">
+        <view class="pop-img-box">
+          <image src="{{productDetail.product_img}}" class="goods-thumbnail" />
+        </view>
+        <view class="pop-goods-des">
+          <view class="pop-goods-title">{{productDetail.product_name}}</view>
+          <view class="pop-goods-price">¥{{productDetail.price}}</view>
+        </view>
+        <view class="pop-goods-close" bindtap="closePopupTap"></view>
+      </view>
+      <view class="size-label-box">
+        <block wx:for="{{goodsDetail.properties}}" wx:for-item="property" wx:for-index="idx" wx:key="id">
+          <view class="label">{{property.name}}</view>
+          <view class="label-item-box">
+            <view class="label-item {{item.active ? 'active' : '' }}" wx:for="{{property.childsCurGoods}}" wx:key="id" bindtap="labelItemTap" data-propertyindex="{{idx}}" data-propertyid="{{property.id}}" data-propertyname="{{property.name}}" data-propertychildindex="{{index}}"
+              data-propertychildid="{{item.id}}" data-propertychildname="{{item.name}}">
+              {{item.name}}
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="buy-num-box">
+        <view class="num-label">购买数量</view>
+        <view class="num-box">
+          <view class="num-jian {{buyNumber == buyNumMin ? 'hui': ''}}" bindtap="numJianTap">-</view>
+          <view class="num-input">
+            <input type="number" value="{{buyNumber}}" disabled/>
+          </view>
+          <view class="num-jia {{buyNumber== productDetail.product_surplus ? 'hui': ''}}" bindtap="numJiaTap">+</view>
+        </view>
+      </view>
+      <view class="popup-join-btn" wx:if="{{shopType =='addShopCar'}}" bindtap="addShopCar">
+        加入购物车
+      </view>
+      <view class="popup-join-btn" data-shopType="{{shopType}}" wx:if="{{shopType =='tobuy'}}" bindtap="buyNow">
+        立即购买
+      </view>
+    </view>
   </view>
 </view>
