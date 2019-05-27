@@ -32,9 +32,9 @@
       <contact-button style="opacity:0;position:absolute;" type="default-dark" session-from="weapp" size="27"></contact-button>
       <view style='position:absolute;bottom:10rpx;'> 客服 </view>
     </view>
-    <view class="shop-cart-btn" bindtap="goShopCar">
+    <view class="shop-cart-btn" bindtap='toCart'>
       <!-- <view class="shop-num" wx:if="{{isLogin}}">(1)</view> -->
-      <view style='position:absolute;bottom:10rpx;'> 购物车 </view>
+      <view style='position:absolute;bottom:10rpx;' > 购物车 </view>
     </view>
     <view class="join-shop-cart" bindtap="toAddShopCar">加入购物车</view>
     <view class="now-buy" bindtap="tobuy">立即购买</view>

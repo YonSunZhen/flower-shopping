@@ -17,12 +17,19 @@ Page({
     buyNumMin: 1 //最少选择的数量(默认为1)
   },
 
+  //前往购物车
+  toCart() {
+    wx.switchTab({
+      url: '../shop-cart/shop-cart'
+    })
+  },
+
   //创建购物车
   addShopCar() {
     //先检查数据表中是否存在该用户的数据
     cart.isExist(this.data.openid).then((res) => {
-      console.log('--------');
-      console.log(res);
+      // console.log('--------');
+      // console.log(res);
       //如果有的话先找出来然后再原有数据上增加
       if(res === "true"){
         wx.showLoading({
@@ -30,18 +37,18 @@ Page({
         })
         cart.getCartByUserid(this.data.openid).then((res) => {
           
-          console.log("11111")
-          console.log(res);
+          // console.log("11111")
+          // console.log(res);
           const id = res._id;
           const product_id = this.data.productId;
           const order_quantity = this.data.buyNumber;
           const price = this.data.productDetail.price;
           let oldCarts = res.data[0].cart_products;
           const test = oldCarts;
-          console.log('22222');
-          console.log(test);
-          console.log(product_id);
-          console.log(oldCarts);
+          // console.log('22222');
+          // console.log(test);
+          // console.log(product_id);
+          // console.log(oldCarts);
           let state = 1;//(0相同产品,1不同产品)
           for (let i = 0; i < oldCarts.length; i++) {
             if (oldCarts[i].product_id === product_id) {
@@ -55,6 +62,7 @@ Page({
             for (let i = 0; i < newCarts.length; i++) {
               if (oldCarts[i].product_id === product_id){
                 newCarts[i].order_quantity = newCarts[i].order_quantity + order_quantity
+                newCarts[i].add_time = db.serverDate();
               }
             }
             wx.cloud.callFunction({
@@ -64,8 +72,8 @@ Page({
                 newCarts: newCarts
               }
             }).then((res) => {
-              console.log('66666');
-              console.log(res);
+              // console.log('66666');
+              // console.log(res);
               if (res.result.stats.updated > 0) {
                 wx.hideLoading();
                 wx.showToast({
@@ -84,6 +92,8 @@ Page({
               product_id: product_id,
               order_quantity: order_quantity,
               price: price,
+              product_img: this.data.productDetail.product_img,
+              product_name: this.data.productDetail.product_name,
               add_time: db.serverDate()
             }
             newCarts.push(newProduct);
@@ -94,8 +104,8 @@ Page({
                 newCarts: newCarts
               }
             }).then((res) => {
-              console.log('66666');
-              console.log(res);
+              // console.log('66666');
+              // console.log(res);
               if (res.result.stats.updated > 0) {
                 wx.hideLoading();
                 wx.showToast({
@@ -125,6 +135,8 @@ Page({
               product_id: product_id,
               order_quantity: order_quantity,
               price: this.data.productDetail.price,
+              product_img: this.data.productDetail.product_img,
+              product_name: this.data.productDetail.product_name,
               add_time: db.serverDate()
             }
           ],
@@ -177,17 +189,13 @@ Page({
 
   //获取商品详情
   _getProductDetail(product_id) {
-    return new Promise((resolve, reject) => {
-      product.getOneProduct(product_id).then((res) => {
-        const img = res.product_img;
-        this.setData({
-          productDetail: res,
-          // fileIds: res.product_img,
-          // files: this.data.files.concat(img), //拼接数组必须用这个concat返回一个新数组
-          // oldFiles: this.data.oldFiles.concat(img)
-        })
-        console.log(this.data.productDetail);
-        resolve()
+    product.getOneProduct(product_id).then((res) => {
+      const img = res.product_img;
+      this.setData({
+        productDetail: res,
+        // fileIds: res.product_img,
+        // files: this.data.files.concat(img), //拼接数组必须用这个concat返回一个新数组
+        // oldFiles: this.data.oldFiles.concat(img)
       })
     })
   },
@@ -283,6 +291,7 @@ Page({
     this.setData({
       openid: getApp().openid
     })
+    this._getProductDetail(this.data.productId);
     console.log('登录状态'+ this.data.isLogin);
     console.log('openid' + this.data.openid);
   },

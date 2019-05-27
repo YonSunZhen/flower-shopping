@@ -1,5 +1,5 @@
 <import src="../../template/shop-cart-template/shop-cart-template.wxml"/>
 
 <view class="container">
-     <template is="cart-goods-list"></template>
+    <template is="{{goodsList.list.length > 0 && goodsList.isLogin  ? 'cart-goods-list' : 'no-goods'}}" data="{{...goodsList}}"></template>
 </view>

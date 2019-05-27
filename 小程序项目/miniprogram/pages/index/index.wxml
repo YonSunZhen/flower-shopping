@@ -32,7 +32,7 @@
     </scroll-view>
   </view>
   <view class='swiper-container'>
-    <swiper class="swiper_box">
+    <swiper class="swiper_box" autoplay="true" indicator-dots="true">
       <block >
         <swiper-item>
           <image src="../../images/01.jpg" class="slide-image" width="750rpx" height="562.5rpx" />
@@ -45,12 +45,9 @@
         </swiper-item>
       </block>
     </swiper>
-    <view class="dots">
-      <!-- <block wx:for="{{banners}}" wx:key="unique">
+    <!-- <view class="dots">
+      <block wx:for="{{banners}}" wx:key="unique">
         <view class="dot{{index == swiperCurrent ? ' active' : ''}}"></view>
-      </block> -->
-      <block>
-        <view class="dot"></view>
       </block>
       <block>
         <view class="dot"></view>
@@ -58,7 +55,10 @@
       <block>
         <view class="dot"></view>
       </block>
-    </view>
+      <block>
+        <view class="dot"></view>
+      </block>
+    </view> -->
   </view>
   <view class='space'></view>
   <view class='recommendList'>
