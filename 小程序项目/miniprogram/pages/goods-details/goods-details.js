@@ -91,9 +91,9 @@ Page({
             let newProduct = {
               product_id: product_id,
               order_quantity: order_quantity,
-              price: price,
-              product_img: this.data.productDetail.product_img,
-              product_name: this.data.productDetail.product_name,
+              _price: price,
+              img: this.data.productDetail.product_img,
+              name: this.data.productDetail.product_name,
               add_time: db.serverDate()
             }
             newCarts.push(newProduct);
@@ -134,9 +134,9 @@ Page({
             {
               product_id: product_id,
               order_quantity: order_quantity,
-              price: this.data.productDetail.price,
-              product_img: this.data.productDetail.product_img,
-              product_name: this.data.productDetail.product_name,
+              _price: this.data.productDetail.price,
+              img: this.data.productDetail.product_img,
+              name: this.data.productDetail.product_name,
               add_time: db.serverDate()
             }
           ],
@@ -190,9 +190,9 @@ Page({
   //获取商品详情
   _getProductDetail(product_id) {
     product.getOneProduct(product_id).then((res) => {
-      const img = res.product_img;
+      const img = res[0].product_img;
       this.setData({
-        productDetail: res,
+        productDetail: res[0],
         // fileIds: res.product_img,
         // files: this.data.files.concat(img), //拼接数组必须用这个concat返回一个新数组
         // oldFiles: this.data.oldFiles.concat(img)

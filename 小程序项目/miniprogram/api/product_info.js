@@ -78,7 +78,10 @@ const getProductsByState = (pageIndex, pageSize) => {
 //根据商品id查找出商品详情
 const getOneProduct = (id) => {
   return new Promise((resolve, reject) => {
-    db.collection('product_info').doc(id).get().then(res => {
+    db.collection('product_info').where({
+      _id: id
+    }).get().then(res => {
+      console.log(res.data);
       resolve(res.data);
     })
   })
