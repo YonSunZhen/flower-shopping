@@ -213,3 +213,7 @@
 .jiesuan-box .total{
     color: #e64340;
 }
+
+.xiajia{
+  background-color: #EEEEEE;
+}

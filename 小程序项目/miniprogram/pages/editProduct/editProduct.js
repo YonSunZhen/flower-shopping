@@ -61,10 +61,10 @@ Page({
   _getProductDetail(product_id){
     return new Promise((resolve,reject) => {
       product.getOneProduct(product_id).then((res) => {
-        const img = res.product_img;
+        const img = res[0].product_img;
         this.setData({
-          productDetail: res,
-          fileIds: res.product_img,
+          productDetail: res[0],
+          fileIds: res[0].product_img,
           files: this.data.files.concat(img), //拼接数组必须用这个concat返回一个新数组
           oldFiles: this.data.oldFiles.concat(img)
         })
