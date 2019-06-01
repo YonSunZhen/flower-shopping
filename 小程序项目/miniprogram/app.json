@@ -10,6 +10,8 @@
     "pages/editCategroy/editCategroy",
     "pages/delProduct/delProduct",
     "pages/editProduct/editProduct",
+    "pages/select-address/select-address",
+    "pages/add-address/add-address",
     "pages/test/test"
   ],
   "window": {

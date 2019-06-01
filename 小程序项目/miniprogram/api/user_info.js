@@ -39,7 +39,20 @@ const isExist = (user_openid) => {
 
 }
 
+//根据用户id查找出用户的user_address_id
+const getAddressId = (id) => {
+  return new Promise((resolve, reject) => {
+    db.collection('user_info').where({
+      _openid: id
+    }).get().then(res => {
+      console.log(res.data);
+      resolve(res.data[0].user_address_id);
+    })
+  })
+}
+
 module.exports = {
   addUser,
-  isExist
+  isExist,
+  getAddressId
 }

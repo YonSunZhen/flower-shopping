@@ -33,6 +33,10 @@
       </view>
       <view style="height:10rpx;background: #eee;width:100%;"></view>
       <view class='my-item'>
+        <navigator url="/pages/select-address/select-address" hover-class="navigator-hover">选择地址</navigator>
+      </view>
+      <view style="height:10rpx;background: #eee;width:100%;"></view>
+      <view class='my-item'>
         <navigator url="/pages/asset/index" hover-class="navigator-hover">资金明细</navigator>
       </view>
       <view class='my-item'>
@@ -64,6 +68,10 @@
       </view>
       <view class='my-item'>
         <navigator url="/pages/delProduct/delProduct" hover-class="navigator-hover">编辑商品</navigator>
+      </view>
+      <view style="height:10rpx;background: #eee;width:100%;"></view>
+      <view class='my-item'>
+        <navigator url="/pages/select-address/select-address" hover-class="navigator-hover">选择地址</navigator>
       </view>
     </block>
   </view>
