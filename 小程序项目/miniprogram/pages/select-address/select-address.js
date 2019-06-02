@@ -13,6 +13,67 @@ Page({
     idList: []
   },
 
+  //切换是否选中
+  selectTap(e) {
+    console.log(e);
+    const id = e.currentTarget.dataset.id;
+    const index = e.currentTarget.dataset.index;
+    if (this.data.addressList[index].isSelected) {
+      wx.showToast({
+        title: '已选中',
+      })
+    }else{
+      wx.showLoading({
+        title: '',
+      })
+      const str = `addressList[${index}].isSelected`;
+      //将选中的那一项的isSelected设为true
+      this.setData({
+        [str]: true
+      })
+      //将其他项的isSelected设为false
+      for(let i = 0; i < this.data.addressList.length; i++) {
+        if(i != index) {
+          this.setData({
+            [`addressList[${i}].isSelected`]: false
+          })
+        }
+      }
+      //将更改的数据存进数据库
+      let promiseArr = [];
+      for(let i = 0; i < this.data.addressList.length; i++) {
+        let data = {
+          isSelected: this.data.addressList[i].isSelected
+        }
+        promiseArr.push(new Promise((resolve, reject) => {
+          wx.cloud.callFunction({
+            name: 'editAddress',
+            data: {
+              id: this.data.addressList[i]._id,
+              data: data
+            }
+          }).then((res) => {
+            console.log('0000000');
+            console.log(res);
+            // if (res.result.stats.updated > 0) {
+            //   resolve();
+            // } else {
+            //   reject();
+            // }
+            resolve();
+          })
+        }))
+      }
+      Promise.all(promiseArr).then(() => {
+        wx.hideLoading();
+        wx.showToast({
+          title: '保存成功!',
+        })
+        console.log('111111');
+        console.log(this.data.addressList);
+      })
+    }
+  },
 
   editAddess(e) {
     console.log(e);
@@ -36,20 +97,20 @@ Page({
       for(let i = 0; i < this.data.idList.length; i++) {
         promiseArr.push(new Promise((resolve, reject) => {
           address.getAddressDetail(this.data.idList[i]).then((res) => {
-            console.log('111111');
-            console.log(res);
+            // console.log('111111');
+            // console.log(res);
             temp.push(res);
             resolve();
           })
         }))
       }
       Promise.all(promiseArr).then(() => {
-        console.log('222222222');
-        console.log(temp);
+        // console.log('222222222');
+        // console.log(temp);
         this.setData({
           addressList: temp
         })
-        console.log('3333333');
+        // console.log('3333333');
         console.log(this.data.addressList);
       })
     })

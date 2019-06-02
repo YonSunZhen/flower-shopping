@@ -16,6 +16,7 @@ Page({
     address_detail: '',
     remark: '',
     address_id: '',//增加用户地址时返回来的id(后台生成的那个)
+    old_addressId: [],
     new_addressId: [],
     addressDetail: {},
     addressId: '',//用户点击编辑按钮时传过来的id
@@ -123,34 +124,44 @@ Page({
       wx.showLoading({
         title: '保存中',
       })
-      //将数据增加到address表-更新用户表中用户的数据
-      address.addAddress(data).then((res) => {
-        this.setData({
-          address_id: res
-        })
-        // console.log('111111');
+      //获取原来用户的地址数组-将数据增加到address表-更新用户表中用户的数据
+      //第一个添加的地址默认为选中,后面的默认不选中
+      user.getAddressId(this.data.openid).then((res) => {
+        // console.log('33333');
         // console.log(res);
-      }).then(res => {
-        // console.log('22222');
-        // console.log(this.data.address_id);
-        // console.log(this.data.openid);
-        user.getAddressId(this.data.openid).then((res) => {
-          // console.log('33333');
-          // console.log(res);
-          const old_addressId = res;
-          old_addressId.push(this.data.address_id);
+        // const old_addressId = res;
+        if (res.length < 1) {
+          data.isSelected = true;
+          // old_addressId.push(this.data.address_id);
           this.setData({
-            new_addressId: old_addressId
+            old_addressId: res
           })
+        } else {
+          data.isSelected = false;
+          // old_addressId.push(this.data.address_id);
+          this.setData({
+            old_addressId: res
+          })
+        }
+      }).then(() => {
+        address.addAddress(data).then((res) => {
+          const array = this.data.old_addressId;
+          array.push(res);
+          this.setData({
+            address_id: res,
+            new_addressId: array
+          })
+          // console.log('111111');
+          // console.log(res);
         }).then(() => {
-          const data = {
+          const data1 = {
             user_address_id: this.data.new_addressId
           }
           wx.cloud.callFunction({
             name: 'editUserAddr',
             data: {
               id: this.data.openid,
-              data: data
+              data: data1
             }
           }).then((res) => {
             if (res.result.stats.updated > 0) {
