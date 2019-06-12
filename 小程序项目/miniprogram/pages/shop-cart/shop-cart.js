@@ -15,6 +15,36 @@ Page({
     totalPrice: 0
   },
 
+  //点击去结算按钮
+  toPayOrder() {
+    let isSelect = false;//(false表示都没选中,true表示最少选中1个)
+    for(let i = 0; i < this.data.goodsList.length; i++) {
+      //只要有一个选中的
+      if (this.data.goodsList[i].checked) {
+        isSelect = true;
+      }
+    }
+    if (!isSelect) {
+      wx.showToast({
+        title: '您还未选择项目,请先选择',
+        icon: 'none',
+      })
+    }else{
+      let goodSelected = [];
+      for(let i = 0; i < this.data.goodsList.length; i++) {
+        if(this.data.goodsList[i].checked) {
+          goodSelected.push(this.data.goodsList[i]);
+        }
+      }
+      console.log(goodSelected);
+      //将选中的数据存储到本地缓存数据中
+      wx.setStorageSync('goodLists', goodSelected);
+      wx.navigateTo({
+        url: '../addOrder/addOrder',
+      })
+    }
+  },
+
   //点击删除按钮
   deleteSelected() {
     let array = [];

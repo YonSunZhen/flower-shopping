@@ -12,6 +12,7 @@
     "pages/editProduct/editProduct",
     "pages/select-address/select-address",
     "pages/add-address/add-address",
+    "pages/addOrder/addOrder",
     "pages/test/test"
   ],
   "window": {

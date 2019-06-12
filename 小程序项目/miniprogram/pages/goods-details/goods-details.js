@@ -17,6 +17,21 @@ Page({
     buyNumMin: 1 //最少选择的数量(默认为1)
   },
 
+  //点击立即购买按钮
+  buyNow() {
+    let goodSelected = [{
+      product_id: this.data.productDetail._id,
+      product_name: this.data.productDetail.product_name,
+      img: this.data.productDetail.product_img,
+      price: this.data.productDetail.price,
+      order_quantity: this.data.buyNumber,
+    }]
+    wx.setStorageSync('goodLists', goodSelected);
+      wx.navigateTo({
+        url: '../addOrder/addOrder',
+      })
+  },
+
   //前往购物车
   toCart() {
     wx.switchTab({
@@ -197,6 +212,8 @@ Page({
         // files: this.data.files.concat(img), //拼接数组必须用这个concat返回一个新数组
         // oldFiles: this.data.oldFiles.concat(img)
       })
+      // console.log('111111');
+      // console.log(this.data.productDetail);
     })
   },
 
@@ -226,7 +243,7 @@ Page({
       console.log("已登录");
     }
   },
-  //点击加入立即购买按钮
+  //点击加入立即购买按钮(弹出立即购买窗口)
   tobuy() {
     if(!this.data.isLogin){
       console.log("未登录");
@@ -240,7 +257,7 @@ Page({
             wx.switchTab({
               url: '../my/my'
             })
-            console.log('用户点击确定')
+            console.log('用户点击确定');
           } 
         }
       })

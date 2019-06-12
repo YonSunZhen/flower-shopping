@@ -23,9 +23,33 @@ const getAddressDetail = (id) => {
     })
   })
 }
+//获取用户选中的地址
+const getAddressSelected = (user_id) => {
+  return new Promise((resolve,reject) => {
+    db.collection('user_addr').where({
+      user_id: user_id,
+      isSelected: true
+    }).get().then(res => {
+      resolve(res.data);
+    })
+  })
+}
+
+//获取用户所有的地址
+const getAddressByUser = (user_id) => {
+  return new Promise((resolve, reject) => {
+    db.collection('user_addr').where({
+      user_id: user_id
+    }).get().then(res => {
+      resolve(res.data);
+    })
+  })
+}
 
 
 module.exports = {
   addAddress,
-  getAddressDetail
+  getAddressDetail,
+  getAddressSelected,
+  getAddressByUser
 }
