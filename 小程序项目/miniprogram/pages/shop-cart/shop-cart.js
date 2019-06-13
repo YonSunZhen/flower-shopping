@@ -227,6 +227,7 @@ Page({
       this.getTotalPrice();
 
       let newCarts = [];
+      //重新更新整个购物车列表
       for (let i = 0; i < this.data.goodsList.length; i++) {
         let temp = this.data.goodsList[i];
         let obj = {

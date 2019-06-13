@@ -169,10 +169,16 @@ Page({
               wx.showToast({
                 title: '保存成功!'
               })
+              wx.navigateBack({
+                delta: 1
+              })
             } else {
               wx.hideLoading();
               wx.showToast({
                 title: '保存失败!'
+              })
+              wx.navigateBack({
+                delta: 1
               })
             }
           })
@@ -204,10 +210,16 @@ Page({
             wx.showToast({
               title: '保存成功!'
             })
+            wx.navigateBack({
+              delta: 1
+            })
           } else {
             wx.hideLoading();
             wx.showToast({
               title: '保存失败!'
+            })
+            wx.navigateBack({
+              delta: 1
             })
           }
         })

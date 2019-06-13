@@ -81,9 +81,9 @@ Page({
               }
             }
             wx.cloud.callFunction({
-              name: 'editCart',
+              name: 'editCartByUid',
               data: {
-                id: id,
+                id: this.data.openid,
                 newCarts: newCarts
               }
             }).then((res) => {
@@ -113,9 +113,9 @@ Page({
             }
             newCarts.push(newProduct);
             wx.cloud.callFunction({
-              name: 'editCart',
+              name: 'editCartByUid',
               data: {
-                id: id,
+                id: this.data.openid,
                 newCarts: newCarts
               }
             }).then((res) => {
