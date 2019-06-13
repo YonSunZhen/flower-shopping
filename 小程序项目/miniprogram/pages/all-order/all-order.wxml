@@ -28,7 +28,9 @@
         </view>
       </view>
       <view class="price-box">
+        <view class="btn" hidden="{{item.order_status==0? false : true}}" bindtap="updateStatusTo1" data-id="{{item._id}}" data-index="{{index}}">已完成</view>
         <view class="btn" hidden="{{item.order_status==0? false : true}}" bindtap="cancelOrderTap" data-id="{{item._id}}" data-index="{{index}}">取消订单</view>
+        <view class="btn" hidden="{{item.order_status==1? false : true}}" bindtap="updateStatusTo0" data-id="{{item._id}}" data-index="{{index}}">进行中</view>
         <view class="btn" hidden="{{item.order_status==1? false : true}}" bindtap="deleteOrderTap" data-id="{{item._id}}" data-index="{{index}}">删除订单</view>
       </view>
     </view>

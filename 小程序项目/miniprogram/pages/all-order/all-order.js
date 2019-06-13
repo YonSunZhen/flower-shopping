@@ -12,6 +12,88 @@ Page({
     orderList: [],
     openid: ''
   },
+  //将已完成的改为进行中
+  updateStatusTo0(e) {
+    let order_id = e.currentTarget.dataset.id;
+    let index = e.currentTarget.dataset.index;
+    wx.showModal({
+      content: '确定吗?',
+      showCancel: true,
+      success: res => {
+        if (res.confirm) {
+          wx.showLoading({
+            // title: '删除中'
+          })
+          let data = {
+            order_status: 0
+          }
+          wx.cloud.callFunction({
+            name: 'editOrder',
+            data: {
+              id: order_id,
+              data: data
+            }
+          }).then((res) => {
+            if (res.result.stats.updated > 0) {
+              console.log("成功更改状态");
+              let array = JSON.parse(JSON.stringify(this.data.orderList));
+              array.splice(index, 1);
+              this.setData({
+                orderList: array
+              })
+              wx.hideLoading();
+              wx.showToast({
+                title: '已完成',
+              })
+            }
+          })
+
+
+        }
+      }
+    });
+  },
+  //将进行中的改为已完成
+  updateStatusTo1(e) {
+    let order_id = e.currentTarget.dataset.id;
+    let index = e.currentTarget.dataset.index;
+    wx.showModal({
+      content: '确定吗?',
+      showCancel: true,
+      success: res => {
+        if (res.confirm) {
+          wx.showLoading({
+            // title: '删除中'
+          })
+          let data = {
+            order_status: 1
+          }
+          wx.cloud.callFunction({
+            name: 'editOrder',
+            data: {
+              id: order_id,
+              data: data
+            }
+          }).then((res) => {
+            if (res.result.stats.updated > 0) {
+              console.log("成功更改状态");
+              let array = JSON.parse(JSON.stringify(this.data.orderList));
+              array.splice(index, 1);
+              this.setData({
+                orderList: array
+              })
+              wx.hideLoading();
+              wx.showToast({
+                title: '已完成',
+              })
+            }
+          })
+
+
+        }
+      }
+    });
+  },
 
   //删除订单
   deleteOrderTap(e) {
