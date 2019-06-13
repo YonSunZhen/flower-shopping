@@ -32,6 +32,7 @@ Page({
       }).then(res => {
         const user_openid = res.result.openid;
         //这里添加管理员的openid
+        //user_openid === "oTy3U5B5uMil2A8ltOIijqEbXoo8" ||
         if (user_openid === "oTy3U5B5uMil2A8ltOIijqEbXoo8" || user_openid === "oTy3U5OYZTCo6bnpq4ginf-AHfK0"){
           this.setData({
             isManager: true
@@ -69,6 +70,23 @@ Page({
     }else{
       console.log("登陆失败");
     }  
+  },
+
+  //点击进行中按钮(管理员)
+  goOrder1(e) {
+    let type = e.currentTarget.dataset.type;
+    wx.navigateTo({
+      url: `../all-order/all-order?type=${type}`,
+    })
+  },
+
+  //点击进行中按钮(普通用户)
+  goOrder(e) {
+    let type = e.currentTarget.dataset.type;
+    wx.navigateTo({
+      url: `../order-list/order-list?type=${type}`,
+    })
+    // console.log(e);
   },
 
   /**

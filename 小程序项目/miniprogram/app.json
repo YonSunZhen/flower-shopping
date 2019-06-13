@@ -13,6 +13,8 @@
     "pages/select-address/select-address",
     "pages/add-address/add-address",
     "pages/addOrder/addOrder",
+    "pages/order-list/order-list",
+    "pages/all-order/all-order",
     "pages/test/test"
   ],
   "window": {

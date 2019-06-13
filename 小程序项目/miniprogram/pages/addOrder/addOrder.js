@@ -1,5 +1,6 @@
 const address = require('../../api/user_addr.js');
 const order = require('../../api/order_info.js');
+const product = require('../../api/product_info.js');
 const db = wx.cloud.database();
 Page({
 
@@ -37,7 +38,8 @@ Page({
           product_id: this.data.goodsList[i].product_id,
           order_quantity: this.data.goodsList[i].order_quantity,
           product_name: this.data.goodsList[i].product_name,
-          price: this.data.goodsList[i].price
+          price: this.data.goodsList[i].price,
+          img: this.data.goodsList[i].img
         }
         order_products.push(obj);
       }
@@ -53,11 +55,51 @@ Page({
       };
       order.addOrder(data).then((res) => {
         if (res === 'true') {
-          wx.hideLoading();
-          wx.showToast({
-            title: '提交成功!',
+          //修改库存
+          let promiseArr = [];
+          for(let i = 0; i < this.data.goodsList.length; i++) {
+            promiseArr.push(new Promise((resolve, reject) => {
+              let product_id = this.data.goodsList[i].product_id;
+              let order_quantity = this.data.goodsList[i].order_quantity;
+              product.getOneProduct(product_id).then((res) => {
+                console.log('88888');
+                console.log(res);
+                let product_surplus = res[0].product_surplus;
+                let product_sale = res[0].product_sale;
+                product_sale = product_sale + order_quantity;
+                product_surplus = product_surplus - order_quantity;
+                let data = {
+                  product_sale: product_sale,
+                  product_surplus: product_surplus
+                }
+                wx.cloud.callFunction({
+                  name: 'editProduct',
+                  data: {
+                    id: product_id,
+                    data: data
+                  }
+                }).then((res) => {
+                  if (res.result.stats.updated > 0) {
+                    resolve();
+                  } else {
+                    console.log("提交订单出错");
+                  }
+                })
+              })
+            })) 
+          }
+
+          Promise.all(promiseArr).then(() => {
+            console.log('99999');
+            wx.hideLoading();
+            wx.showToast({
+              title: '提交成功!',
+            })
+            wx.navigateTo({
+              url: '../order-list/order-list?type=0',
+            })
           })
-          console.log('66666');
+         
         } else {
           wx.hideLoading();
           wx.showToast({

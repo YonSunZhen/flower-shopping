@@ -39,6 +39,7 @@ App({
                 const user_openid = res.result.openid;
                 this.openid = user_openid;
                 //这里添加管理员的openid
+                //user_openid === "oTy3U5B5uMil2A8ltOIijqEbXoo8" ||
                 if (user_openid === "oTy3U5B5uMil2A8ltOIijqEbXoo8" || user_openid === "oTy3U5OYZTCo6bnpq4ginf-AHfK0") {
                   this.isManager = true;
                 }

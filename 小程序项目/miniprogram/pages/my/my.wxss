@@ -41,13 +41,13 @@
 .order-shortcut .item {
   display: flex;
   flex-direction: column;
-  width: 187rpx;
+  width: 375rpx;
   text-align: center;
 }
 .order-shortcut .item .icon {
   width: 67rpx;
   height: 67rpx;
-  margin-left: 60rpx;
+  margin: 0 auto;
 }
 .order-shortcut .item .text {
   font-size: 12px;

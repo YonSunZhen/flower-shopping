@@ -117,6 +117,21 @@ const getProductsByCateId = (categroyId) => {
   })
 }
 
+//根据商品id判断是否存在此商品
+const isExistById = (id) => {
+  return new Promise((resolve, reject) => {
+    db.collection('product_info').where({
+      _id: id
+    }).get().then(res => {
+      if (res.data.length > 0) {
+        resolve("true");
+      } else {
+        resolve("false");
+      }
+    })
+  })
+}
+
 module.exports = {
   addProduct,
   isExist,
@@ -124,5 +139,6 @@ module.exports = {
   getOneProduct,
   getProductsByState,
   getProductsBySale,
-  getProductsByCateId
+  getProductsByCateId,
+  isExistById
 }

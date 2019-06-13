@@ -26,15 +26,15 @@ Page({
   deleteAddress() {
     //获取该用户的user_address_id
     user.getAddressId(this.data.openid).then((res) => {
-      console.log('33333333');
-      console.log(res);
+      // console.log('33333333');
+      // console.log(res);
       for (let i = 0; i < res.length; i++) {
         if (res[i] == this.data.addressId) {
           res.splice(i,1)
         }
       }
-      console.log('44444');
-      console.log(res);
+      // console.log('44444');
+      // console.log(res);
       wx.cloud.callFunction({
         name: 'editUserAddr',
         data: {
@@ -74,8 +74,8 @@ Page({
       this.setData({
         addressDetail: res
       })
-      console.log('3333');
-      console.log(this.data.addressDetail);
+      // console.log('3333');
+      // console.log(this.data.addressDetail);
     })
   },
 
@@ -191,7 +191,7 @@ Page({
         wx.showLoading({
           title: '保存中',
         })
-        console.log('haha');
+        // console.log('haha');
         wx.cloud.callFunction({
           name: 'editAddress',
           data: {
@@ -237,7 +237,7 @@ Page({
       })
       this._getAddressDetail(id);
     }
-    console.log(this.data.type);
+    // console.log(this.data.type);
     this.setData({
       isLogin: getApp().isLogin,
       openid: getApp().openid
@@ -249,8 +249,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('2222222');
-    console.log(options);
+    // console.log('2222222');
+    // console.log(options);
     const type = options.type;
     const id = options.id;
     this.ininData(type,id);

@@ -1,0 +1,37 @@
+<view class="container">
+  <view  class="status-box">
+    <view bindtap="statusTap" class="status-label {{index == currentType ? 'active' : ''}}" wx:for-items="{{statusType}}" wx:key="{{index}}" data-index="{{index}}">
+      {{item}}
+    </view>
+  </view>
+  <view class="no-order" hidden="{{orderList.length > 0 ? true : false}}">
+    <image src="/images/no-order.png" class="no-order-img"></image>
+    <view class="text">暂无订单</view>
+  </view>
+  <view class="order-list" hidden="{{orderList.length > 0 ? false : true}}">
+    <view class="a-order" wx:for-items="{{orderList}}" wx:key="{{index}}">
+      <text class='dindanhao'>订单号: {{item._id}}</text>
+      <scroll-view class="goods-img-container" scroll-x="true">
+        <view class="img-box" wx:for="{{item.order_products}}" bindtap='toProDetail' data-pid="{{item.product_id}}"  wx:key="{{index}}">
+          <image src="{{item.img}}" class="goods-img"></image>
+        </view>
+      </scroll-view>
+      <view class="goods-price">
+        共 {{item.goodsNumber}} 件商品 合计：
+        <text class="p" >¥ {{item.order_money}}</text>
+        <!-- <text class="p" wx:if="{{item.score > 0}}">¥ {{item.amountReal}} + {{item.score}} 积分</text> -->
+      </view>
+      <view class="goods-info">
+        <view class="goods-des">
+          <view class="remark" wx:if="{{item.deliver_remark && item.deliver_remark != ''}}">{{item.deliver_remark}}</view>
+          <view>{{item.create_time}} </view>
+        </view>
+      </view>
+      <view class="price-box">
+        <view class="btn" hidden="{{item.order_status==0? false : true}}" bindtap="cancelOrderTap" data-id="{{item._id}}" data-index="{{index}}">取消订单</view>
+        <view class="btn" hidden="{{item.order_status==1? false : true}}" bindtap="deleteOrderTap" data-id="{{item._id}}" data-index="{{index}}">删除订单</view>
+      </view>
+    </view>
+
+  </view>
+</view>
