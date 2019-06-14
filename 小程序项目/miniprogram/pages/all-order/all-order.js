@@ -188,11 +188,14 @@ Page({
                             console.log("更新库存成功");
                             resolve();
                           } else {
+                            resolve();
                             console.log("更新库存出错");
                           }
                         })
 
                       })
+                    }else{
+                      resolve();
                     }
                   })
                 }))

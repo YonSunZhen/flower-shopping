@@ -15,6 +15,7 @@
     "pages/addOrder/addOrder",
     "pages/order-list/order-list",
     "pages/all-order/all-order",
+    "pages/order-detail/order-detail",
     "pages/test/test"
   ],
   "window": {

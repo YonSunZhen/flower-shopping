@@ -17,22 +17,31 @@ Page({
 
   //点击去结算按钮
   toPayOrder() {
-    let isSelect = false;//(false表示都没选中,true表示最少选中1个)
+    let isSelect = 0;//(0表示都没选中,1表示选中的都是好的，2表示选中的商品有一个不好的)
     for(let i = 0; i < this.data.goodsList.length; i++) {
       //只要有一个选中的
       if (this.data.goodsList[i].checked) {
-        isSelect = true;
+        isSelect = 1;
+        if (this.data.goodsList[i].product_state == 0) {
+          isSelect = 2;
+          break;
+        }
       }
     }
-    if (!isSelect) {
+    if (isSelect == 0) {
       wx.showToast({
         title: '您还未选择项目,请先选择',
         icon: 'none',
       })
-    }else{
+    }else if(isSelect == 2){
+      wx.showToast({
+        title: '选择了下架的商品',
+        icon: 'none',
+      })
+    }else if(isSelect == 1){
       let goodSelected = [];
-      for(let i = 0; i < this.data.goodsList.length; i++) {
-        if(this.data.goodsList[i].checked) {
+      for (let i = 0; i < this.data.goodsList.length; i++) {
+        if (this.data.goodsList[i].checked) {
           goodSelected.push(this.data.goodsList[i]);
         }
       }
@@ -163,7 +172,15 @@ Page({
     }
   },
 
-  //选中项目
+  //选中下架的商品
+  selectTap1() {
+    wx.showToast({
+      title: '商品已下架',
+      icon: 'none'
+    })
+  },
+
+  //选中正常的商品
   selectTap(e) {
     console.log(e);
     const index = e.currentTarget.dataset.index;

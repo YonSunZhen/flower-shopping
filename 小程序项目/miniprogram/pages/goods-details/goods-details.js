@@ -24,7 +24,7 @@ Page({
       product_name: this.data.productDetail.product_name,
       img: this.data.productDetail.product_img,
       price: this.data.productDetail.price,
-      order_quantity: this.data.buyNumber,
+      order_quantity: this.data.buyNumber
     }]
     wx.setStorageSync('goodLists', goodSelected);
       wx.navigateTo({

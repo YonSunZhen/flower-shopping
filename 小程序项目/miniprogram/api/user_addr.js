@@ -40,8 +40,9 @@ const getAddressByUser = (user_id) => {
   return new Promise((resolve, reject) => {
     db.collection('user_addr').where({
       user_id: user_id
-    }).get().then(res => {
-      resolve(res.data);
+    }).orderBy('add_time', 'desc')
+      .get().then(res => {
+        resolve(res.data);
     })
   })
 }

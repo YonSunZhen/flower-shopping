@@ -11,11 +11,10 @@
   </view>
   <view class="order-list" hidden="{{orderList.length > 0 ? false : true}}">
     <view class="a-order" wx:for-items="{{orderList}}" wx:key="{{index}}">
-      <!-- <navigator url="/pages/order-details/index?id={{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <view class="weui-cell__bd"></view>
+      <navigator url="/pages/order-detail/order-detail?id={{item._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd"><text class='dindanhao'>{{item._id}}</text></view>
         <view class="weui-cell__ft weui-cell__ft_in-access">{{item.statusStr}}</view>
-      </navigator> -->
-      <text class='dindanhao'>订单号: {{item._id}}</text>
+      </navigator>
       <scroll-view class="goods-img-container" scroll-x="true">
         <view class="img-box" wx:for="{{item.order_products}}" bindtap='toProDetail' data-pid="{{item.product_id}}"  wx:key="{{index}}">
           <image src="{{item.img}}" class="goods-img"></image>

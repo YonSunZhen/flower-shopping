@@ -125,9 +125,9 @@
 .remark {
   color:#e64340;
   margin-bottom: 20rpx;
+  word-break: break-all;
 }
 
 .dindanhao{
-  padding-left: 15rpx;
   font-size: 26rpx;
 }

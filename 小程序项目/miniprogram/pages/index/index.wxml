@@ -35,13 +35,13 @@
     <swiper class="swiper_box" autoplay="true" indicator-dots="true">
       <block >
         <swiper-item>
-          <image src="../../images/01.jpg" class="slide-image" width="750rpx" height="562.5rpx" />
+          <image src="../../images/f01.jpg" class="slide-image" width="750rpx" height="562.5rpx" />
         </swiper-item>
         <swiper-item>
-          <image src="../../images/02.png" class="slide-image" width="750rpx" height="562.5rpx" />
+          <image src="../../images/f02.jpg" class="slide-image" width="750rpx" height="562.5rpx" />
         </swiper-item>
         <swiper-item>
-          <image src="../../images/03.jpg" class="slide-image" width="750rpx" height="562.5rpx" />
+          <image src="../../images/f03.jpg" class="slide-image" width="750rpx" height="562.5rpx" />
         </swiper-item>
       </block>
     </swiper>

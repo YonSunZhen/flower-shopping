@@ -67,11 +67,21 @@ const getAllOrder1 = () => {
   })
 }
 
+//根据id获取订单详情
+const getOrderDetail = (id) => {
+  return new Promise((resolve, reject) => {
+    db.collection('order_info').doc(id).get().then(res => {
+      resolve(res.data);
+    })
+  })
+}
+
 
 module.exports = {
   addOrder,
   getOrderByUserId0,
   getOrderByUserId1,
   getAllOrder0,
-  getAllOrder1
+  getAllOrder1,
+  getOrderDetail
 }

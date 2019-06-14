@@ -1,0 +1,300 @@
+.container{
+    justify-content:initial;
+}
+.title-box{
+    width: 100%;
+    padding-top: 330rpx;
+    text-align: center;
+    font-size:28rpx;
+    color:#999;
+    background: url(https://cdn.it120.cc/images/weappshop/icon-cart.png) no-repeat center 205rpx;
+    background-size: 100rpx auto;
+    margin-bottom: 50rpx;
+}
+.to-index-btn{
+    color:#fff;
+    background:#e64340;
+    border-radius:6px;
+    width:300rpx;
+    height:70rpx;
+    line-height: 70rpx;
+    text-align: center;
+    font-size:28rpx;
+}
+.list-top{
+    width: 100%;
+    height: 88rpx;
+    line-height: 88rpx;
+    box-sizing: border-box;
+    display: flex;
+    justify-content:space-between;
+    padding: 0 30rpx;
+    font-size: 28rpx;
+    align-items: center;
+}
+.list-top .label{
+    color: #000;
+}
+.list-top .edit-btn{
+    color: #999;
+    height: 100%;
+}
+.goodsList{
+    width: 100%;
+    background-color: #fff;
+    padding-bottom: 30rpx;
+}
+.a-gooods{
+    width: 100%;
+    overflow: hidden;
+}
+.a-goods-conts{
+    display: flex;
+    justify-content:space-between;
+    padding-left: 30rpx;
+    width: 870rpx;
+    box-sizing: border-box;
+    transition: margin-left 0.2s ease-in-out;
+    background: url(https://cdn.it120.cc/images/weappshop/gou.png) no-repeat 30rpx center;
+    background-size: 40rpx auto; 
+}
+.a-goods-conts.active{
+    background: url(https://cdn.it120.cc/images/weappshop/gou-red.png) no-repeat 30rpx center;
+    background-size: 40rpx auto; 
+}
+.goods-info{
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content:space-between;
+    padding: 30rpx 0 30rpx 70rpx; 
+    width: 720rpx;
+    box-sizing: border-box;
+}
+.goods-info .img-box{
+    width: 160rpx;
+    height:160rpx;
+    overflow: hidden;
+    margin-right: 20rpx;
+    background-color: #d8d8d8;
+}
+.goods-info .text-box{
+    width: 440rpx;
+    position: relative;
+}
+.goods-info .text-box .goods-title{
+    font-size: 28rpx;
+    color:#000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 10rpx 20rpx 5rpx 0;
+}
+.goods-info .text-box .goods-label{
+    font-size: 26rpx;
+    color:#999;
+    height: 38rpx;
+    line-height: 38rpx;
+    margin: 8rpx 0 25rpx 0;
+}
+.goods-info .text-box .goods-price{
+    font-size: 26rpx;
+    color:#e64340;
+}
+.goods-info .text-box .buy-num{
+    width: 164rpx;
+    height: 48rpx;
+    line-height: 48rpx;
+    position: absolute;
+    right: 30rpx;
+    bottom: 0;
+    display: flex;
+    /*justify-content: space-between;*/
+    font-size: 24rpx;
+    text-align: center
+}
+.goods-info .text-box .buy-num .jian-btn{
+    width: 48rpx;
+    height: 100%;
+    border-left: 1rpx solid #ccc;
+    border-bottom: 1rpx solid #ccc;
+    border-top: 1rpx solid #ccc;
+    border-bottom-left-radius: 6rpx;
+    border-top-left-radius: 6rpx;
+}
+.goods-info .text-box .buy-num .jian-btn.disabled{
+    background-color: #f5f5f9;
+    border-left: 1rpx solid #eee;
+    border-bottom: 1rpx solid #eee;
+    border-top: 1rpx solid #eee;
+    color: #ccc;
+}
+.goods-info .text-box .buy-num .jia-btn{
+    width: 48rpx;
+    height: 100%;
+    border-right: 1rpx solid #ccc;
+    border-bottom: 1rpx solid #ccc;
+    border-top: 1rpx solid #ccc;
+    border-bottom-right-radius: 6rpx;
+    border-top-right-radius: 6rpx;
+}
+.goods-info .text-box .buy-num .jia-btn.disabled{
+    background-color: #f5f5f9;
+    border-right: 1rpx solid #eee;
+    border-bottom: 1rpx solid #eee;
+    border-top: 1rpx solid #eee;
+    color: #ccc;
+}
+.goods-info .text-box .buy-num input{
+    width: 68rpx;
+    height: 48rpx;
+    min-height: 48rpx;
+    text-align: center;
+    font-size: 24rpx;
+    border: 1rpx solid #ccc;
+}
+
+.goods-info .img-box .img{
+    width: 160rpx;
+    height:160rpx;
+}
+
+.a-goods-conts .delete-btn{
+    width: 120rpx;
+    line-height: 220rpx;
+    text-align: center;
+    background:#e64340;
+    font-size: 24rpx;
+    color: #fff;
+}
+.jiesuan-box{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100rpx;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-bottom:1px solid #eee; 
+    border-top:1px solid #eee; 
+    background-color: #fff;
+    z-index: 999;
+}
+.jiesuan-box .to-pay-btn{
+    width:240rpx;
+    text-align: center;
+    line-height: 100rpx;
+    background-color: #e64340;
+    font-size:32rpx;
+    color:#ffffff;
+}
+.jiesuan-box .to-pay-btn.no-select{
+    background-color: #ccc;
+}
+
+.jiesuan-box  .left-price{
+    display: flex;
+    width: 510rpx;
+    justify-content: space-between;
+    line-height: 100rpx;
+    padding: 0 30rpx 0 0;
+    font-size:28rpx;
+    box-sizing: border-box;
+}
+.jiesuan-box .all-selected{
+    padding-left: 90rpx;
+    color:#000000;
+    background: url(https://cdn.it120.cc/images/weappshop/gou.png) no-repeat 30rpx center;
+    background-size: 40rpx auto; 
+}
+.jiesuan-box .all-selected.active{
+    background: url(https://cdn.it120.cc/images/weappshop/gou-red.png) no-repeat 30rpx center;
+    background-size: 40rpx auto; 
+}
+.jiesuan-box .total{
+    color: #e64340;
+    padding-left: 20rpx;
+}
+
+.xiajia{
+  background-color: #EEEEEE;
+}
+
+.peisong-way{
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 20rpx;
+}
+.peisong-way .row-box{
+    width: 720rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 24rpx 0 24rpx 30rpx;
+    border-bottom: 1rpx solid #eee;
+}
+.peisong-way .row-label{
+    font-size: 28rpx;
+    color: #000;
+}
+.peisong-way .right-text{
+    font-size: 28rpx;
+    color: #666;
+    /* padding-right: 30rpx; */
+}
+.remark{
+  font-size: 28rpx;
+  color: #666;
+  padding-left: 30rpx;
+  word-break: break-all;
+}
+.peisong-way .liuyan{
+    width: 510rpx;
+    font-size: 28rpx;
+}
+
+.address-box{
+    width: 100%;
+    background: url(https://cdn.it120.cc/images/weappshop/arrow-right.png) no-repeat 705rpx center ,
+                url(https://cdn.it120.cc/images/weappshop/addr-line.png) no-repeat center bottom;
+    background-size: 16rpx auto,750rpx auto;
+    background-color: #fff;
+    margin: 20rpx 0; 
+}
+.add-addres{
+    width: 100%;
+}
+.add-address .title{
+    font-size: 28rpx;
+    color: #000;
+    margin-left: 30rpx;
+    background: url(https://cdn.it120.cc/images/weappshop/ico-add-addr.png) no-repeat left center;
+    background-size: 60rpx auto;
+    padding: 40rpx 0 40rpx 90rpx; 
+}
+.select-address .title{
+    font-size: 28rpx;
+    color: #000;
+    margin-left: 30rpx;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAANtklEQVR4Xu2da8xm1xTH/5OWNPRDP0kTviBIE4lEVF16QQhCi2rd70pLEV8kQg2jxBeJoOi01ZYyVbTVi1vqVq1ba4qWutS1QwmCCurSIv/JfmfO+3ae9zl7P2vtvfY5/53Mp9l77bX/e/3e9Zxz1jl7C9SkgBRYqMAWaSMFpMBiBQSIokMKbKKAAFF4SAEBohiQAmUKKIOU6aZRM1FAgMxko7XMMgUESJluGjUTBQTITDZayyxTQICU6aZRM1FAgMxko7XMMgUESJluGjUTBUoAOQrAo2eij5Y5LQUuA7AzZ0klgGwFsC1nEvWVAkEUOAnA9hxfBEiOWurbuwICpPcdlP+uCggQV3llvHcFBEjvOyj/XRUQIK7yynjvCgiQ3ndQ/rsqIEBc5ZXx3hUQIL3voPx3VUCAuMor470rIEB630H576qAAHGVV8Z7V0CA9L6D8t9VAQHiKq+M966AAOl9B+W/qwICxFVeGe9dAQHS+w7Kf1cFBIirvDLeuwICpPcdlP+uCnQHyK0ADnKVRMZ7VuAAALcZLkCAGIopU+0VECDKIO2jMLAHAkSABA7P9q4JEAHSPgoDeyBABEjg8GzvmgARIO2jMLAHAkSABA7P9q4JEAHSPgoDeyBABEjg8GzvmgARIO2jMLAHAkSABA7P9q4JEAHSPgoDeyBABEjg8GzvmgARIO2jMLAHAkSABA7P9q4JEAHSPgoDeyBABEjg8GzvmgARIO2jMLAHAkSABA7P9q4JEAHSPgoDeyBABEjg8GzvmgARIO2jMLAHAkSABA7P9q4JEAHSPgoDeyBABEjg8GzvmgARIO2jMLAHAkSABA7P9q4JEAHSPgoDeyBABEjg8GzvmgARIO2jMLAHAkSABA7P9q4JEAHSPgoDeyBABEjg8GzvmgARIO2jMLAHAkSABA7P9q4JEAHSPgoDeyBABEjg8GzvmgARIO2jMLAHAkSABA7P9q4JEAHSPgoDeyBABEjg8GzvmgARIO2jMLAHAkSABA7P9q4JEAHSPgoDeyBABEjg8GzvmgARIO2jMLAHAkSABA7P9q4JkAkAcgiA/QHc0D6eJueBNSAnAjgjR6UtOZ1T360AthWM29eQWycAyD0B7ALwIwAfB/AJAD8w0mfuZqwBOQnA9hxRBUiOWov7XgngyMF/35hg2QHgJpspZmlFgEwggzByTwBw5oIQZjZhZjlfsGRDLkAmAsiBAP4E4C5LQuD76SeYYBnHigCZCCDcbmaJ48ft++5evKjn9Qp/hv0sY9ycugqQCQFyNIBLC6P3+kFmESx7RRQgEwJkPwB/NFgPYWE2+pgyCwSIQUAV/tF2GfZeAK8ytPy9wd2wXxra7cWUAJkYIA8F8C2n6Pvu4G7YXGDpEpA3AXirURBM4UHhRil+AuB+RvosMvMdAJ9MF/hTh+VRhlr+GMBvc+zpQWGOWuP6ngLg1HFdTXpdN8gsN5tYlJE9CggQ+2Bg6cmv7c2OsrhzcIEvWEZJtnknAWIg4j5MfBXAET6mR1v9drp1zLthgmW0bOs7CpBC4ZYMe1lu1aiPG3usXjt4ztIquzkv0ce8APHRdWzpic/sm1u9ZpBZBMuSHRAgfiHKMpLj/MybWCYsfCh5QcPrJpOFeBkRIF7KAscAuMTPvLllPr9Ze4J/i7n1Tg0KEL+NY2Xv7zt8EPq/9LBzLbPMGhYB4gcILZ8G4GTfKVytE5ZvpsxCYGYHiwBxjS8clgLMd5Y61gnLNwbXLL+rM23bWQSIv/4sX7+P/zRVZyAsXx9klsnCIkD848qyds3f2/wZCMvX0q1j/gybFCwCJD8gcke0LD3J9XXV/oTl6gQLbx3zJkXXTYDU2b6rABxeZ6ows/x3AAszS5ewCJA68fTy3O8x1XGr2iyEhX8k+PCU/7qBRYDUiZGDUlAs++pJHW/azrIGC7MK//E15bBNgNTbGr7g9PR603UxE2Fh5fPaFynDwSJA6sXRUwB8qt503c10xwAW/jEJAYsAqRdHvZae1FNo70yEhZ9zXcss/ChfkyZA6sr+PgCvrDtl97MRlq8kWJhZqsIiQOrGz8NSuUbdWaczG2H5croTVgUWAVI/eKZYelJfReD2DbD82cMJAeKh6uY23wzgLfWnnfSMhOVLKbNcCMAMFgFSP25YuKjv7/rpTli+mGC5aFVYBIjfRm1mmcV9j2gz9axmXYOFd8OYWfihwqwmQLLkMuvMo8A+YGZNhsYo8J+UWQgLM8soWATIGGnt+6j0xF7THIuE5Qvp1vHFm8EiQHJkte3Lv2JPszUpawUKEJYrBrD8dWhDgBQoajTkqQD410stlgKvA/DONZcESLvNUelJO+03zszy+3PTKwk/VwaJszG8UOcFu1p9Bfj2I69DzkhFpLzjdaemDFJ/Y4Yz8lYvb/mq1VOA54OcnbLFrmXTCpBlCvn/v0pP/DXmeyefS9nicgCs6RrVBMgomVw7seyE5Sdq9gowQ3wQwFkAflNiXoCUqGY7RqUntnryWuLTKVswazB7FDcBUiyd6UB+hO3hphbnZ+wXKVucaflRCAESI5BeAeD9MVzpygs+5OMX9HkninekeGfKtAkQUzmLjan0JE+6m9J1Be9Gub67LkDyNsazN5+q8+m62r4V+FcqMmS24Cu4VZoAqSLzqEmOTSXZozrPqNMPAfC64hwAf6m9bgFSW/HF86n0ZK82t6UXnpgtmj5IFSBxAKEnpwM4MZZLVb25PmWL88a+r+HtnQDxVjjP/iPTB5/zRvXd++8AeJY7f0bxnMRQTYCE2o7dzvBoZh6ZMPW2M0HxUQB/i7pYARJvZ7YB2BrPLROP+DLSjvTM5wYTi85GBIizwAXmp1h6woNA+ROKP6X+UaBJsyECpJn0m07MwzL5FcaeG79N9ZF04+HGXhdSAojlmXv8sgSfIqutV6Dn0pNfATglwdH9vpYAwt/H/J1s0QTIvlXsufSE1bQ8B+VSiwBpbUOAtN6BxfPzLBGeKdJjIyRHp5eUevR/j88CJO728a8wv2Dea/t3ApzvZHTbBEjcrWPpCc/CODCui0s96x4SAbJ0j5t22A6AJ+T23LqGRIDEDr0j0rl9sb1c7l23kAiQ5ZvbusdUSk+6hESAtA7/5fOfmp4rLO8Zv0d3kAiQ+EE1tdKTriARIPEBoYesZTqssav8wN3BAO5u5McTe3hOIkCMdtvZzMkATnOeY5l5vhJ8S/p6iMWtZ2YSQsKzBcM2ARJ2a9Y5xtITfr1jv0bustjwgemzOsxkDOq7GfjyTwBPigyJADHY5UomWNvE8o0W7bgNH5Q4HMDn5wCJAGkRbmVzHp9OQSobXT5qmD2GVmYBiQApD5zaI1uVnhDMRTVhk4dEgNQO89Xm41t5J6xmImv0ouwxm0wiQLLipXnnIwFcWdGLzbLHLCARIBWjzWiqWqUnY7LH5CERIEZRW9HM2wC8scJ8z0hfN8yZanLXJAIkZ/tj9K1RepKbPTwzyeNafkxPgMQI+lwvrgFwaO6gjP7PXPGWMjPJFQAOyJhzUVd+JujxrSARIAY72MDEqwG8x2neVbLH0KXHpKPQuoZEgDhFmbNZz9KTZwG4wMj/7iERIEaR0MDMZQCebDzvTwHc3/gos64hESDGEVbRHO8yWf2lX3P72enzoNbL6BYSAWIdCvXs8bf9Hwy/esLs8YBVj03eZPldQiJA6gW0x0xnAXipkeHnADjfyNYiM91BIkCcI8LZ/FFGB1p6Zw/Pu1uEzu3gHQHiHMHO5rl/uwwO3KmRPTZC8lkAdzXQh4fvPNYLktaAGOjTjQkWGl7l4O3bAbxhBbs1s8fQzScAuCQ6JAJkhcjKHOoFyKqlJ89Npz5lLseke3hIBIjJPo8y4gUIJ78WwENGebG+U6vs0U0mESAFUVU4xBOQ1wB4d4FfzwPAQzRbt7CZRIDUCw1PQO6RPsmT89WTCNkjfCYRINMAhKu4PH1CZ+yKnh/wmLRwmUSAjA2n1ft5ZhB6xxJ1niI7pkXLHmEziQAZE042fbwBySk9eQGA82yW5WLFOpPwgep1JZ4KkBLVysZ4A0Kvzgbw4iXuRc4eGzMJK5b3L5N73SgeFssn7tmQlABieQy0wdq7McHDcK529nZM6Un07DGU6Jj0MNFCNkLCW+H8AzG6lQBieQz0aEcn0LFGBllWetJL9tgIyYUGmYQfv+PLYHfkxJIAyVFrtb41AKGH7wDw+gWuvhDAh1dbRpPRzCSrQFIEB1cqQOrtdy1ADgHA98o3th6zh0UmKYZDgNSDgzPVAoRz7QTw4A3LexGAD9VdsvlsuZlkJTgEiPn+bWqwJiCvBfCugTc3A7i349uCNZUcC8nKcAiQmttaN4NsLD3hrd9z6y7XdbZlkJjAIUBc9/BOxmtmEE7+mXTEGbPHfQHcXne57rMtgsQMDgHivofrJqgNCL9QsgPASwCcU3ep1WYjJBcNjqYzhUOAVNvH3RPVBoSlJ7xYf9AEs8dw53g8HGvQLi55zrEsBEpu83Kj+dheLU8BloHw507Ndi8APC5h6o1VCh6vMxc9B5m62FqfFNijQEkGkXxSYDYKCJDZbLUWWqKAAClRTWNmo4AAmc1Wa6ElCgiQEtU0ZjYKCJDZbLUWWqKAAClRTWNmo4AAmc1Wa6ElCgiQEtU0ZjYKCJDZbLUWWqKAAClRTWNmo8D/AcwJxfbOuYmPAAAAAElFTkSuQmCC) no-repeat left center;
+    background-size: 60rpx auto;
+    padding: 40rpx 0 40rpx 90rpx; 
+}
+.show-address{
+    width: 664rpx;
+    box-sizing: border-box;
+    padding-left: 100rpx;
+    background: url(https://cdn.it120.cc/images/weappshop/ico-addr.png) no-repeat 30rpx 35rpx;
+    background-size: 30rpx auto;
+}
+.show-address .name-tel{
+    font-size: 28rpx;
+    color: #000;
+    padding: 30rpx 0 20rpx 0;
+}
+.show-address .addr-text{
+    font-size: 24rpx;
+    color: #888;
+    padding-bottom: 34rpx;
+    line-height: 36rpx;
+}
