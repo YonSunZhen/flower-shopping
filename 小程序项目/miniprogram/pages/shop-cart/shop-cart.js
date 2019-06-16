@@ -72,44 +72,56 @@ Page({
         icon: 'none',
       })
     }else{
-      wx.showLoading({
-        title: '',
-      })
-      this.setData({
-        goodsList: array
-      })
-      this.getTotalPrice();
+      wx.showModal({
+        content: '确定删除吗？',
+        showCancel: true,
+        success: res => {
+          if(res.confirm) {
+            wx.showLoading({
+              title: '',
+            })
+            this.setData({
+              goodsList: array
+            })
+            this.getTotalPrice();
 
-      let newCarts = [];
-      for (let i = 0; i < this.data.goodsList.length; i++) {
-        let temp = this.data.goodsList[i];
-        let obj = {
-          "_price": temp._price,
-          "add_time": temp.add_time,
-          "img": temp.img,
-          "name": temp.name,
-          "order_quantity": temp.order_quantity,
-          "product_id": temp.product_id
-        }
-        newCarts.push(obj);
-      }
+            let newCarts = [];
+            for (let i = 0; i < this.data.goodsList.length; i++) {
+              let temp = this.data.goodsList[i];
+              let obj = {
+                "_price": temp._price,
+                "add_time": temp.add_time,
+                "img": temp.img,
+                "name": temp.name,
+                "order_quantity": temp.order_quantity,
+                "product_id": temp.product_id
+              }
+              newCarts.push(obj);
+            }
 
-      wx.cloud.callFunction({
-        name: 'editCartByUid',
-        data: {
-          id: this.data.openid,
-          newCarts: newCarts
-        }
-      }).then((res) => {
-        if (res.result.stats.updated > 0) {
-          wx.hideLoading();
-        } else {
-          wx.hideLoading();
+            wx.cloud.callFunction({
+              name: 'editCartByUid',
+              data: {
+                id: this.data.openid,
+                newCarts: newCarts
+              }
+            }).then((res) => {
+              if (res.result.stats.updated > 0) {
+                wx.hideLoading();
+                this.setData({
+                  isDone: true
+                })
+              } else {
+                wx.hideLoading();
+                this.setData({
+                  isDone: true
+                })
+              }
+            })
+            console.log(this.data.goodsList);
+          }
         }
       })
-
-      // console.log('999999999');
-      console.log(this.data.goodsList);
     }
   },
 
@@ -469,7 +481,9 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    this.setData({
+      isDone: true
+    })
   },
 
   /**

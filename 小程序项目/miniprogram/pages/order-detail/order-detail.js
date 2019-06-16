@@ -11,6 +11,14 @@ Page({
     curAddressData: {} //地址信息
   },
 
+  //拨打号码
+  toPhone(e) {
+    const phone = e.currentTarget.dataset.phone;
+    wx.makePhoneCall({
+      phoneNumber: phone //仅为示例，并非真实的电话号码
+    })
+  },
+
   //获取订单详情
   _getOrderList(id) {
     order.getOrderDetail(id).then((res) => {

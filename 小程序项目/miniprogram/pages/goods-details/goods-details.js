@@ -94,10 +94,17 @@ Page({
                 wx.showToast({
                   title: '添加成功!'
                 })
+                //关闭弹框
+                this.setData({
+                  hideShopPopup: true
+                })
               } else {
                 wx.hideLoading();
                 wx.showToast({
                   title: '添加失败!'
+                })
+                this.setData({
+                  hideShopPopup: true
                 })
               }
             })
@@ -126,10 +133,16 @@ Page({
                 wx.showToast({
                   title: '添加成功!'
                 })
+                this.setData({
+                  hideShopPopup: true
+                })
               } else {
                 wx.hideLoading();
                 wx.showToast({
                   title: '添加失败!'
+                })
+                this.setData({
+                  hideShopPopup: true
                 })
               }
             })

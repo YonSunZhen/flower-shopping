@@ -130,6 +130,13 @@ Page({
     this._getAllProduct(1, 100);
     //默认先获取两条数据(爆品推荐)
     this._getProductRecommend(2);
+  },
+
+  //当页面隐藏时
+  onHide() {
+    this.setData({
+      selectId: -1
+    })
   }
 
 })
