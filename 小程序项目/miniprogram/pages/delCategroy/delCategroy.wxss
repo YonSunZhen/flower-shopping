@@ -1,8 +1,0 @@
-.del{
-    /* height: 100rpx; */
-    position: fixed;
-    bottom: 0;
-    background-color: #fff;
-    z-index: 999;
-    width: 100%;
-}
