@@ -1,0 +1,12 @@
+<editor
+  id="editor"
+  class="ql-container"
+  placeholder="haha"
+  showImgSize
+  showImgToolbar
+  showImgResize
+  bindstatuschange="onStatusChange"
+  read-only="{{readOnly}}"
+  bindready="onEditorReady"
+></editor>
+

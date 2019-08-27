@@ -1,0 +1,74 @@
+<template name="no-goods">
+    <view class="title-box">
+        购物车空空如也～
+    </view>
+    <view class="to-index-btn" bindtap="toIndexPage">
+        去逛逛
+    </view>
+</template>
+
+<template name="cart-goods-list">
+    <view class='list-top'>
+      <view class="label">微商城</view>
+      <view class="edit-btn" wx:if='{{isDone}}'  bindtap="editTap">编辑</view>
+      <view class="edit-btn" wx:if='{{!isDone}}'  bindtap="saveTap">完成</view>
+    </view>
+    <view class='goodsList'>
+      <view class='a-gooods' wx:for="{{goodsList}}"  wx:key="{{index}}">
+        <!-- 正常商品 -->
+        <view class="a-goods-conts {{item.checked? 'active': ''}}" wx:if="{{item.product_state == 1}}" bindtap="selectTap" data-index="{{index}}"> 
+          <view class='goods-info'>
+            <view class='img-box' catchtap='toProductDetail' data-id="{{item.product_id}}">
+              <image class='img' src='{{item.product_img}}'></image>
+            </view>
+            <view class='text-box'>
+              <view class="goods-title">{{item.product_name}}</view>
+              <view class="goods-label"></view>
+              <view class="goods-price">¥{{item.price}}</view>
+              <view class="buy-num" wx:if='{{isDone}}'>
+                <view>数量: {{item.order_quantity}}</view>
+              </view>
+              <view class="buy-num" wx:if='{{!isDone}}'>
+                <view class="jian-btn {{item.order_quantity==1? 'disabled' : ''}}" catchtap="jianBtnTap" data-index="{{index}}">-</view>
+                <input  type="number" value="{{item.order_quantity}}" disabled/>
+                <view class="jia-btn {{item.order_quantity==item.product_surplus? 'disabled' : ''}}" catchtap="jiaBtnTap" data-index="{{index}}" data-order="{{item.product_surplus}}">+</view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <!-- 删除或下架的商品 -->
+        <view class="a-goods-conts xiajia {{item.checked? 'active': ''}}" wx:if="{{item.product_state == 0}}" bindtap="selectTap" data-index="{{index}}"> 
+          <view class='goods-info'>
+            <view class='img-box'>
+              <image class='img' src='{{item.img}}'></image>
+            </view>
+            <view class='text-box'>
+              <view class="goods-title">{{item.name}}</view>
+              <view class="goods-label" >商品已下架</view>
+              <view class="goods-price">¥{{item._price}}</view>
+              <view class="buy-num">
+                <view>数量: {{item.order_quantity}}</view>
+              </view>
+              <!-- <view class="buy-num" wx:if='{{!isDone}}'>
+                <view class="jian-btn {{item.order_quantity==1? 'disabled' : ''}}" catchtap="jianBtnTap" data-index="{{index}}">-</view>
+                <input  type="number" value="{{item.order_quantity}}" disabled/>
+                <view class="jia-btn {{item.order_quantity==item.product_surplus? 'disabled' : ''}}" catchtap="jiaBtnTap" data-index="{{index}}" data-order="{{item.product_surplus}}">+</view>
+              </view> -->
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+    <view class='jiesuan-box'>
+      <view class="left-price">
+        <view class="all-selected  {{allSelect?'active':''}}" bindtap="bindAllSelect">全选</view>
+        <view class="total" hidden="{{noSelect}}">合计：¥ {{totalPrice}}</view>
+      </view>
+      <view class="to-pay-btn {{noSelect?'no-select':''}}" wx:if='{{isDone}}'  bindtap="toPayOrder">去结算</view>
+      <view class="to-pay-btn {{noSelect?'no-select':''}}" wx:if='{{!isDone}}' bindtap="deleteSelected">删除</view>
+      <!-- <view class="to-pay-btn {{noSelect?'no-select':''}}" wx:if='{{!isDone}}' bindtap="saveSelected" >保存</view> -->
+      
+    </view>
+</template>

@@ -1,0 +1,39 @@
+<view class="container">
+    <form bindsubmit="bindSave" report-submit="true">
+    <view class="form-box">
+        <view class="row-wrap">
+            <view class="label">类型名</view>
+            <view class="label-right">
+                <input name="categroyName" class="input" type="text" placeholder="输入类型名称" value="{{categroy_name}}"/>
+            </view>
+        </view>
+
+        <view class="weui-cells">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+                            <view class="weui-uploader__title">选择图片</view>
+                            <view class="weui-uploader__info">{{files.length}}/1</view>
+                        </view>
+                        <view class="weui-uploader__bd">
+                            <view class="weui-uploader__files" id="uploaderFiles">
+                                <block wx:for="{{files}}" wx:key="*this">
+                                    <!-- 默认数组的当前项的下标变量名默认为  index ，数组当前项的变量名默认为  item  -->
+                                    <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}" bindlongpress="deleteImage" data-index="{{index}}">
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                                    </view>
+                                </block>
+                            </view>
+                            <view class="weui-uploader__input-box">
+                                <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <button type="warn" class="save-btn" formType="submit">保存</button>
+    </form>
+</view>
