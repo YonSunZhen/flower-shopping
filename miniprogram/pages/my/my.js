@@ -9,11 +9,12 @@ Page({
     isLogin: "",
     username: '',
     isManager: '',
+    isService: '',
     userInfo: { } //用户的头像和姓名
   },
 
   login: function(event) {
-    console.log(event.detail);
+    console.log('点击了登录');
     // console.log(JSON.parse(event.detail.rawData).nickName);
     this.setData({
       username: JSON.parse(event.detail.rawData).nickName
@@ -32,19 +33,25 @@ Page({
       }).then(res => {
         const user_openid = res.result.openid;
         //这里添加管理员的openid
-        //user_openid === "oTy3U5B5uMil2A8ltOIijqEbXoo8" ||
-        if (user_openid === "o8wZX4wKKcPRTuzU6VkZ_QFzvIWA" || user_openid === "o8wZX41JK4CflN7ra7B13OXFlJhc"){
+        //user_openid === "o8wZX4wKKcPRTuzU6VkZ_QFzvIWA" || 
+        if (user_openid === "o8wZX41JK4CflN7ra7B13OXFlJhc"){
           this.setData({
             isManager: true
           })
           getApp().isManager = true;
-          getApp().openid = user_openid;
+        }
+        //这里添加客服人员的openid
+        if (user_openid === "o8wZX4wKKcPRTuzU6VkZ_QFzvIWA" || user_openid === "o8wZX44dK_lJ0HhnGN1gX4NIOtUU") {
+          this.setData({
+            isService: true
+          })
+          getApp().isService = true;
         }
         this.setData({
           isLogin: true
         });
         getApp().isLogin = true;
-        
+        getApp().openid = user_openid; 
         const userData = {
           user_openid: user_openid,
           username: this.data.username,

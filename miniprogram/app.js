@@ -2,6 +2,7 @@
 App({
   isLogin: false,//全局都可访问
   isManager: false,//是否管理员
+  isService: false, //是否是客服人员
   userInfo: { }, //全局的用户信息
   openid: '',
 
@@ -39,9 +40,13 @@ App({
                 const user_openid = res.result.openid;
                 this.openid = user_openid;
                 //这里添加管理员的openid
-                //user_openid === "oTy3U5B5uMil2A8ltOIijqEbXoo8" ||
-                if (user_openid === "o8wZX4wKKcPRTuzU6VkZ_QFzvIWA" || user_openid === "o8wZX41JK4CflN7ra7B13OXFlJhc") {
+                //user_openid === "o8wZX4wKKcPRTuzU6VkZ_QFzvIWA" ||
+                if ( user_openid === "o8wZX41JK4CflN7ra7B13OXFlJhc") {
                   this.isManager = true;
+                }
+                //这里添加客服人员的openid
+                if (user_openid === "o8wZX4wKKcPRTuzU6VkZ_QFzvIWA" || user_openid === "o8wZX44dK_lJ0HhnGN1gX4NIOtUU") {
+                  this.isService = true;
                 }
               })
               console.log(res);
