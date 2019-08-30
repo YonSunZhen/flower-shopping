@@ -16,6 +16,10 @@ App({
       })
     }
 
+    wx.showShareMenu({
+      withShareTicket: true
+    })
+
     this.globalData = {};
 
     wx.getSetting({
@@ -44,7 +48,7 @@ App({
                 if ( user_openid === "o8wZX41JK4CflN7ra7B13OXFlJhc") {
                   this.isManager = true;
                 }
-                //这里添加客服人员的openid
+                //这里添加客服人员的openid o8wZX44dK_lJ0HhnGN1gX4NIOtUU
                 if (user_openid === "o8wZX4wKKcPRTuzU6VkZ_QFzvIWA" || user_openid === "o8wZX44dK_lJ0HhnGN1gX4NIOtUU") {
                   this.isService = true;
                 }

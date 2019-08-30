@@ -235,7 +235,8 @@ Page({
         for (let i = 0; i < res.length; i++) {
           let goodsNumber = 0;
           //更改时间格式
-          let time = res[i].create_time.toLocaleString().split('GMT')[0];
+          let temp = res[i].create_time;
+          let time = temp.getFullYear() + '-' + (temp.getMonth() + 1) + '-' + temp.getDate() + ' ' + temp.getHours()+':'+temp.getMinutes();
           res[i].create_time = time;
           console.log('1111');
           console.log(res[i].create_time);
@@ -265,7 +266,9 @@ Page({
         for (let i = 0; i < res.length; i++) {
           let goodsNumber = 0;
           //更改时间格式
-          let time = res[i].create_time.toLocaleString().split('GMT')[0];
+          // let time = res[i].create_time.toLocaleString('en-GB').split('GMT')[0];
+          let temp = res[i].create_time;
+          let time = temp.getFullYear() + '-' + (temp.getMonth() + 1) + '-' + temp.getDate() + ' ' + temp.getHours() + ':' + temp.getMinutes();
           res[i].create_time = time;
           console.log('1111');
           console.log(res[i].create_time);

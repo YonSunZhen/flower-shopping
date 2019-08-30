@@ -40,7 +40,7 @@ Page({
           })
           getApp().isManager = true;
         }
-        //这里添加客服人员的openid
+        //这里添加客服人员的openid o8wZX44dK_lJ0HhnGN1gX4NIOtUU
         if (user_openid === "o8wZX4wKKcPRTuzU6VkZ_QFzvIWA" || user_openid === "o8wZX44dK_lJ0HhnGN1gX4NIOtUU") {
           this.setData({
             isService: true
@@ -110,6 +110,11 @@ Page({
     if (getApp().isManager) {
       this.setData({
         isManager: getApp().isManager
+      })
+    }
+    if (getApp().isService) {
+      this.setData({
+        isService: getApp().isService
       })
     }
 

@@ -154,8 +154,6 @@ Page({
           title: '添加中',
         })
         const user_id = this.data.openid;
-        console.log("11111111111111111111");
-        console.log(user_id);
         const product_id = this.data.productId;
         const order_quantity = this.data.buyNumber;
         const data = {
@@ -302,8 +300,6 @@ Page({
     this.setData({
       openid: getApp().openid
     })
-    console.log("000000000000");
-    console.log(this.data.openid);
     this._getProductDetail(this.data.productId);
     // console.log(this.data.productId);
   },
@@ -326,8 +322,6 @@ Page({
     this.setData({
       openid: getApp().openid
     })
-    console.log("2222222222");
-    console.log(this.data.openid);
     this._getProductDetail(this.data.productId);
     console.log('登录状态'+ this.data.isLogin);
     console.log('openid' + this.data.openid);
