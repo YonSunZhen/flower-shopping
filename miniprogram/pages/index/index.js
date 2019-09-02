@@ -49,8 +49,8 @@ Page({
       this.setData({
         productRecommend: res.data
       })
-      console.log("---------");
-      console.log(this.data.productRecommend);
+      // console.log("---------");
+      // console.log(this.data.productRecommend);
     })
   },
 
@@ -64,7 +64,7 @@ Page({
       this.setData({
         productList: res.data
       })
-      console.log(this.data.productList);
+      // console.log(this.data.productList);
       wx.hideLoading();
     })
   },

@@ -1,10 +1,14 @@
 //app.js
+wx.cloud.init();
+const manager = require('./api/manager.js');
+const servicer = require('./api/servicer.js');
 App({
   isLogin: false,//全局都可访问
   isManager: false,//是否管理员
   isService: false, //是否是客服人员
   userInfo: { }, //全局的用户信息
   openid: '',
+
 
   onLaunch: function () {
     
@@ -21,6 +25,7 @@ App({
     })
 
     this.globalData = {};
+
 
     wx.getSetting({
       success: res => {
@@ -44,14 +49,25 @@ App({
                 const user_openid = res.result.openid;
                 this.openid = user_openid;
                 //这里添加管理员的openid
-                //user_openid === "o8wZX4wKKcPRTuzU6VkZ_QFzvIWA" ||
-                if ( user_openid === "o8wZX41JK4CflN7ra7B13OXFlJhc") {
-                  this.isManager = true;
-                }
+                manager.getManagerId().then((res) => {
+                  let arry = [];
+                  for(let i = 0; i < res.length; i++) {
+                    arry.push(res[i].appid);
+                  }
+                  if (arry.indexOf(user_openid) > -1) {
+                    this.isManager = true;
+                  }
+                })
                 //这里添加客服人员的openid o8wZX44dK_lJ0HhnGN1gX4NIOtUU
-                if (user_openid === "o8wZX4wKKcPRTuzU6VkZ_QFzvIWA" || user_openid === "o8wZX44dK_lJ0HhnGN1gX4NIOtUU") {
-                  this.isService = true;
-                }
+                servicer.getServicerId().then((res) => {
+                  let arry = [];
+                  for (let i = 0; i < res.length; i++) {
+                    arry.push(res[i].appid);
+                  }
+                  if (arry.indexOf(user_openid) > -1) {
+                    this.isService = true;
+                  }
+                })
               })
               console.log(res);
               console.log("已经授权登录");

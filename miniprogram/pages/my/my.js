@@ -1,5 +1,7 @@
 // miniprogram/pages/my/my.js
 const user = require('../../api/user_info.js');
+const manager = require('../../api/manager.js');
+const servicer = require('../../api/servicer.js');
 Page({
 
   /**
@@ -10,7 +12,7 @@ Page({
     username: '',
     isManager: '',
     isService: '',
-    userInfo: { } //用户的头像和姓名
+    userInfo: { }, //用户的头像和姓名
   },
 
   login: function(event) {
@@ -32,21 +34,34 @@ Page({
         }
       }).then(res => {
         const user_openid = res.result.openid;
-        //这里添加管理员的openid
-        //user_openid === "o8wZX4wKKcPRTuzU6VkZ_QFzvIWA" || 
-        if (user_openid === "o8wZX41JK4CflN7ra7B13OXFlJhc"){
-          this.setData({
-            isManager: true
-          })
-          getApp().isManager = true;
-        }
-        //这里添加客服人员的openid o8wZX44dK_lJ0HhnGN1gX4NIOtUU
-        if (user_openid === "o8wZX4wKKcPRTuzU6VkZ_QFzvIWA" || user_openid === "o8wZX44dK_lJ0HhnGN1gX4NIOtUU") {
-          this.setData({
-            isService: true
-          })
-          getApp().isService = true;
-        }
+        //这里验证管理员的openid
+        manager.getManagerId().then((res) => {
+          let arry = [];
+          for (let i = 0; i < res.length; i++) {
+            arry.push(res[i].appid);
+          }
+          if (arry.indexOf(user_openid) > -1) {
+            this.setData({
+              isManager: true
+            })
+            getApp().isManager = true;
+          }
+        })
+
+        //这里验证客服人员的openid 
+        servicer.getServicerId().then((res) => {
+          let arry = [];
+          for (let i = 0; i < res.length; i++) {
+            arry.push(res[i].appid);
+          }
+          if (arry.indexOf(user_openid) > -1) {
+            this.setData({
+              isService: true
+            })
+            getApp().isService = true;
+          }
+        })
+
         this.setData({
           isLogin: true
         });
@@ -121,6 +136,7 @@ Page({
     this.setData({
       userInfo: getApp().userInfo
     })
+
   },
 
   /**
@@ -143,6 +159,7 @@ Page({
         userInfo: userInfo
       })
     }
+
   },
 
   /**
