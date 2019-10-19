@@ -15,31 +15,47 @@ Page({
     inputVal: '',
 
 
-    categroyList: [],
-    productList: [],
+    categroyList: [], // 商品类型列表
+    productList: [], // 商品列表
     productRecommend: [],
     selectId: -1 //用于切换选择类型时的颜色(默认不选中)
   },
 
   //点击选择类型时
   selectCategroy(e) {
-    console.log(e);
     const categroyId = e.currentTarget.dataset.categroyid;
-    // console.log(categroyId);
     product.getProductsByCateId(categroyId).then((res) => {
       this.setData({
         productList: res.data
       })
-      // console.log('222222');
-      // console.log(this.data.categroyList);
       for (let i = 0; i < this.data.categroyList.length; i++) {
         if (this.data.categroyList[i]._id === categroyId) {
-          // console.log('111111111');
           this.setData({
             selectId: i
           })
         }
       }
+    })
+  },
+
+  // 获取第一种类型的商品(升序排列)(最先上传的最先显示)
+  _getProductByFirstCate() {
+    wx.showLoading({
+      title: '加载中',
+    })
+    const categroyId = this.data.categroyList[0]._id;
+    product.getProductsByCateId(categroyId).then((res) => {
+      this.setData({
+        productList: res.data
+      })
+      for (let i = 0; i < this.data.categroyList.length; i++) {
+        if (this.data.categroyList[i]._id === categroyId) {
+          this.setData({
+            selectId: i
+          })
+        }
+      }
+      wx.hideLoading();
     })
   },
 
@@ -49,8 +65,6 @@ Page({
       this.setData({
         productRecommend: res.data
       })
-      // console.log("---------");
-      // console.log(this.data.productRecommend);
     })
   },
 
@@ -64,18 +78,19 @@ Page({
       this.setData({
         productList: res.data
       })
-      // console.log(this.data.productList);
       wx.hideLoading();
     })
   },
 
   //获取所有类型
   _getAllCategroy: function () {
-    categroy.getAllCategroy().then((res) => {
-      this.setData({
-        categroyList: res.data
+    return new Promise((resolve, reject) => {
+      categroy.getAllCategroy().then((res) => {
+        this.setData({
+          categroyList: res.data
+        })
+        resolve();
       })
-      // console.log(this.data.categroyList);
     })
   },
 
@@ -101,12 +116,10 @@ Page({
     });
   },
   toSearch: function(e) {
-    console.log(e.detail.value);
   },
 
   toDetailsTap: function(e) {
     const id = e.currentTarget.dataset.productid;
-    console.log(id);
     wx.navigateTo({
       url: `../goods-details/goods-details?id=${id}`,
       success: function(res) {},
@@ -116,20 +129,26 @@ Page({
   },
  
   onLoad: function() {
-    this._getAllCategroy();
+    this._getAllCategroy().then(res => {
+      // 首次加载默认获取第一种类型的商品
+      this._getProductByFirstCate();
+    });
     //分页获取数据暂时没弄
-    this._getAllProduct(1,100);
+    // this._getAllProduct(1,100);
     //默认先获取两条数据(爆品推荐)
-    this._getProductRecommend(2);
+    // this._getProductRecommend(2);
   },
 
   //监听页面显示
   onShow: function() {
-    this._getAllCategroy();
+    this._getAllCategroy().then(res => {
+      // 首次加载默认获取第一种类型的商品
+      this._getProductByFirstCate();
+    });
     //分页获取数据暂时没弄
-    this._getAllProduct(1, 100);
+    // this._getAllProduct(1, 100);
     //默认先获取两条数据(爆品推荐)
-    this._getProductRecommend(2);
+    // this._getProductRecommend(2);
   },
 
   //当页面隐藏时

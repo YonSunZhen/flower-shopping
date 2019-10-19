@@ -33,11 +33,7 @@ Page({
         this.setData({
           curAddressData: res
         })
-        // console.log('00000');
-        // console.log(res);
       })
-      // console.log('1111111');
-      // console.log(this.data.orderList);
     })
   },
 
@@ -45,7 +41,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.id);
     this._getOrderList(options.id);
   },
 

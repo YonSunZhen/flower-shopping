@@ -5,16 +5,12 @@ const addUser = (data) => {
     db.collection('user_info').add({
       data: data
     }).then(res => {
-      // console.log('--------');
-      // console.log(res._id);
       if (res._id) {
-        // console.log('666666666');
         resolve("true");
       }else{
         resolve("flase");
       }
     }).catch(err => {
-      // console.log('7777777');
       resolve(err);
     })
   })
@@ -26,8 +22,6 @@ const isExist = (user_openid) => {
     db.collection('user_info').where({
       user_openid: user_openid
     }).get().then(res => {
-      // console.log("---------")
-      // console.log(res.data)
       // resolve(res.data);
       if (res.data.length > 0) {
         resolve("true");
@@ -45,7 +39,6 @@ const getAddressId = (id) => {
     db.collection('user_info').where({
       _openid: id
     }).get().then(res => {
-      console.log(res.data);
       resolve(res.data[0].user_address_id);
     })
   })

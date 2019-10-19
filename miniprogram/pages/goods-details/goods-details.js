@@ -43,27 +43,18 @@ Page({
   addShopCar() {
     //先检查数据表中是否存在该用户的数据
     cart.isExist(this.data.openid).then((res) => {
-      // console.log('--------');
-      // console.log(res);
       //如果有的话先找出来然后再原有数据上增加
       if(res === "true"){
         wx.showLoading({
           title: '添加中',
         })
         cart.getCartByUserid(this.data.openid).then((res) => {
-          
-          // console.log("11111")
-          // console.log(res);
           const id = res._id;
           const product_id = this.data.productId;
           const order_quantity = this.data.buyNumber;
           const price = this.data.productDetail.price;
           let oldCarts = res.data[0].cart_products;
           const test = oldCarts;
-          // console.log('22222');
-          // console.log(test);
-          // console.log(product_id);
-          // console.log(oldCarts);
           let state = 1;//(0相同产品,1不同产品)
           for (let i = 0; i < oldCarts.length; i++) {
             if (oldCarts[i].product_id === product_id) {
@@ -87,8 +78,6 @@ Page({
                 newCarts: newCarts
               }
             }).then((res) => {
-              // console.log('66666');
-              // console.log(res);
               if (res.result.stats.updated > 0) {
                 wx.hideLoading();
                 wx.showToast({
@@ -126,8 +115,6 @@ Page({
                 newCarts: newCarts
               }
             }).then((res) => {
-              // console.log('66666');
-              // console.log(res);
               if (res.result.stats.updated > 0) {
                 wx.hideLoading();
                 wx.showToast({
@@ -148,7 +135,6 @@ Page({
             })
           }
         })
-        console.log("已存在购物车");
       }else{//没有的话直接创建
         wx.showLoading({
           title: '添加中',
@@ -225,15 +211,12 @@ Page({
         // files: this.data.files.concat(img), //拼接数组必须用这个concat返回一个新数组
         // oldFiles: this.data.oldFiles.concat(img)
       })
-      // console.log('111111');
-      // console.log(this.data.productDetail);
     })
   },
 
   //点击加入购物车按钮
   toAddShopCar() {
     if(!this.data.isLogin){
-      console.log("未登录");
       wx.showModal({
         title: '',
         showCancel: true,
@@ -244,7 +227,6 @@ Page({
             wx.switchTab({
               url: '../my/my'
             })
-            console.log('用户点击确定')
           } 
         }
       })
@@ -253,13 +235,11 @@ Page({
         hideShopPopup: false,
         shopType: 'addShopCar'
       })
-      console.log("已登录");
     }
   },
   //点击加入立即购买按钮(弹出立即购买窗口)
   tobuy() {
     if(!this.data.isLogin){
-      console.log("未登录");
       wx.showModal({
         title: '',
         showCancel: true,
@@ -270,7 +250,6 @@ Page({
             wx.switchTab({
               url: '../my/my'
             })
-            console.log('用户点击确定');
           } 
         }
       })
@@ -279,14 +258,12 @@ Page({
         hideShopPopup: false,
         shopType: 'tobuy'
       })
-      console.log("已登录");
     }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('页面加载');
     wx.setNavigationBarTitle({
       title: '商品详情'
     })
@@ -301,7 +278,6 @@ Page({
       openid: getApp().openid
     })
     this._getProductDetail(this.data.productId);
-    // console.log(this.data.productId);
   },
 
   /**
@@ -315,7 +291,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('页面显示');
     this.setData({
       isLogin: getApp().isLogin
     })
@@ -323,8 +298,6 @@ Page({
       openid: getApp().openid
     })
     this._getProductDetail(this.data.productId);
-    console.log('登录状态'+ this.data.isLogin);
-    console.log('openid' + this.data.openid);
   },
 
   /**

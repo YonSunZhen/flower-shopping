@@ -17,8 +17,6 @@ Page({
 
   //创建订单
   createOrder(e) {
-    console.log('55555');
-    console.log(this.data.curAddressData);
     if (JSON.stringify(this.data.curAddressData) === "{}") {
       wx.showToast({
         title: '请先选择收货地址',
@@ -28,8 +26,6 @@ Page({
       wx.showLoading({
         title: '提交中',
       })
-      console.log('444444');
-      console.log(e);
       const deliver_time = e.detail.value.deliver_time;
       const deliver_remark = e.detail.value.deliver_remark;
       let order_products = [];
@@ -62,8 +58,6 @@ Page({
               let product_id = this.data.goodsList[i].product_id;
               let order_quantity = this.data.goodsList[i].order_quantity;
               product.getOneProduct(product_id).then((res) => {
-                console.log('88888');
-                console.log(res);
                 let product_surplus = res[0].product_surplus;
                 let product_sale = res[0].product_sale;
                 product_sale = product_sale + order_quantity;
@@ -90,7 +84,6 @@ Page({
           }
 
           Promise.all(promiseArr).then(() => {
-            console.log('99999');
             wx.hideLoading();
             wx.showToast({
               title: '提交成功!',
@@ -105,7 +98,6 @@ Page({
           wx.showToast({
             title: '提交失败!',
           })
-          console.log('777777');
         }
       })
     }
@@ -127,15 +119,12 @@ Page({
 
   //初始化页面数据
   init() {
-    console.log('11111111');
     try {
       let value = wx.getStorageSync('goodLists');
       this.setData({
         goodsList: JSON.parse(JSON.stringify(value))
       })
-      console.log(this.data.goodsList);
     } catch (e) {
-      console.log(e);
     }
     //获取总金额
     let totalMoney = 0;
@@ -152,15 +141,11 @@ Page({
     })
     //获取用户配送信息
     address.getAddressSelected(this.data.openid).then((res) => {
-      console.log('33333');
-      console.log(res);
       if(res.length > 0) {
         this.setData({
           curAddressData: res[0],
           isAddrSelected: 'true'
         })
-        console.log('2222222');
-        console.log(this.data.curAddressData);
       }else{
         address.getAddressByUser(this.data.openid).then((res) => {
           if (res.length > 0) {

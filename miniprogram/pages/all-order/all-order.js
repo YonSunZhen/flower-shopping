@@ -35,7 +35,6 @@ Page({
             }
           }).then((res) => {
             if (res.result.stats.updated > 0) {
-              console.log("成功更改状态");
               let array = JSON.parse(JSON.stringify(this.data.orderList));
               array.splice(index, 1);
               this.setData({
@@ -76,7 +75,6 @@ Page({
             }
           }).then((res) => {
             if (res.result.stats.updated > 0) {
-              console.log("成功更改状态");
               let array = JSON.parse(JSON.stringify(this.data.orderList));
               array.splice(index, 1);
               this.setData({
@@ -115,7 +113,6 @@ Page({
             }
           }).then((res) => {
             if (res.result.stats.removed > 0) {
-              console.log("成功删除订单");
               let array = JSON.parse(JSON.stringify(this.data.orderList));
               array.splice(index, 1);
               this.setData({
@@ -154,7 +151,6 @@ Page({
             }
           }).then((res) => {
             if (res.result.stats.removed > 0) {
-              console.log("成功取消订单");
               let order_products = this.data.orderList[index].order_products;
               let promiseArr = [];
               for (let i = 0; i < order_products.length; i++) {
@@ -166,8 +162,6 @@ Page({
                     if (res == 'true') {
                       //存在的话获取原商品的库存信息
                       product.getOneProduct(product_id).then((res) => {
-                        console.log('222222');
-                        console.log(res);
                         let product_surplus = res[0].product_surplus;
                         let product_sale = res[0].product_sale;
                         product_sale = product_sale - order_quantity;
@@ -185,11 +179,9 @@ Page({
                           }
                         }).then((res) => {
                           if (res.result.stats.updated > 0) {
-                            console.log("更新库存成功");
                             resolve();
                           } else {
                             resolve();
-                            console.log("更新库存出错");
                           }
                         })
 
@@ -238,8 +230,6 @@ Page({
           let temp = res[i].create_time;
           let time = temp.getFullYear() + '-' + (temp.getMonth() + 1) + '-' + temp.getDate() + ' ' + temp.getHours()+':'+temp.getMinutes();
           res[i].create_time = time;
-          console.log('1111');
-          console.log(res[i].create_time);
           //增加商品总数字段
           for (let j = 0; j < res[i].order_products.length; j++) {
             goodsNumber += res[i].order_products[j].order_quantity;
@@ -249,8 +239,6 @@ Page({
         this.setData({
           orderList: res
         })
-        console.log('0000');
-        console.log(this.data.orderList);
       }else{
         this.setData({
           orderList: []
@@ -270,8 +258,6 @@ Page({
           let temp = res[i].create_time;
           let time = temp.getFullYear() + '-' + (temp.getMonth() + 1) + '-' + temp.getDate() + ' ' + temp.getHours() + ':' + temp.getMinutes();
           res[i].create_time = time;
-          console.log('1111');
-          console.log(res[i].create_time);
           //增加商品总数字段
           for (let j = 0; j < res[i].order_products.length; j++) {
             goodsNumber += res[i].order_products[j].order_quantity;
@@ -281,8 +267,6 @@ Page({
         this.setData({
           orderList: res
         })
-        console.log('0000');
-        console.log(this.data.orderList);
       }else{
         this.setData({
           orderList: []
@@ -311,13 +295,11 @@ Page({
         currentType: 0
       })
       this._getAllOrder0();
-      console.log('进行中');
     } else if (type == '1') {
       this.setData({
         currentType: 1
       })
       this._getAllOrder1();
-      console.log('已完成');
     }
   },
 

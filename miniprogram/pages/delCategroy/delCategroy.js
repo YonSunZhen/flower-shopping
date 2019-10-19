@@ -12,7 +12,6 @@ Page({
   },
 
   checkboxChange: function (e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value);
     this.setData({
       selectedCategroy: e.detail.value
     })
@@ -27,7 +26,6 @@ Page({
         }
       }
     }
-    // console.log(checkboxItems);
 
     this.setData({
       categroyItems: checkboxItems
@@ -37,8 +35,6 @@ Page({
 
   editCategroy(e) {
     const id = e.target.dataset.id;
-    // console.log(e);
-    console.log(id);
     wx.navigateTo({
       url: `../editCategroy/editCategroy?id=${id}`,
     })

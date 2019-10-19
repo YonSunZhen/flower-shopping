@@ -15,7 +15,6 @@ Page({
 
   //切换是否选中
   selectTap(e) {
-    console.log(e);
     const id = e.currentTarget.dataset.id;
     const index = e.currentTarget.dataset.index;
     if (this.data.addressList[index].isSelected) {
@@ -53,8 +52,6 @@ Page({
               data: data
             }
           }).then((res) => {
-            console.log('0000000');
-            console.log(res);
             // if (res.result.stats.updated > 0) {
             //   resolve();
             // } else {
@@ -69,14 +66,11 @@ Page({
         wx.showToast({
           title: '保存成功!',
         })
-        console.log('111111');
-        console.log(this.data.addressList);
       })
     }
   },
 
   editAddess(e) {
-    console.log(e);
     const type = 'edit';
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
@@ -90,28 +84,21 @@ Page({
       this.setData({
         idList: res
       })
-      console.log(this.data.idList);
     }).then(() => {
       let promiseArr = [];
       let temp = [];
       for(let i = 0; i < this.data.idList.length; i++) {
         promiseArr.push(new Promise((resolve, reject) => {
           address.getAddressDetail(this.data.idList[i]).then((res) => {
-            // console.log('111111');
-            // console.log(res);
             temp.push(res);
             resolve();
           })
         }))
       }
       Promise.all(promiseArr).then(() => {
-        // console.log('222222222');
-        // console.log(temp);
         this.setData({
           addressList: temp
         })
-        // console.log('3333333');
-        console.log(this.data.addressList);
       })
     })
   },
@@ -127,7 +114,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('载入页面');
     wx.setNavigationBarTitle({
       title: '选择收货地址',
     })
@@ -151,7 +137,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('展示页面');
     this._getAddressList();
   },
 

@@ -81,7 +81,6 @@ const getOneProduct = (id) => {
     db.collection('product_info').where({
       _id: id
     }).get().then(res => {
-      console.log(res.data);
       resolve(res.data);
     })
   })
@@ -110,7 +109,7 @@ const getProductsByCateId = (categroyId) => {
         product_state: 1,
         categroy_id: categroyId
       }
-    ).orderBy('publish_time', 'desc')
+    ).orderBy('publish_time', 'asc')
       .get().then(res => {
         resolve(res);
       })

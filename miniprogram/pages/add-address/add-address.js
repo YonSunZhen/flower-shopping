@@ -26,15 +26,11 @@ Page({
   deleteAddress() {
     //获取该用户的user_address_id
     user.getAddressId(this.data.openid).then((res) => {
-      // console.log('33333333');
-      // console.log(res);
       for (let i = 0; i < res.length; i++) {
         if (res[i] == this.data.addressId) {
           res.splice(i,1)
         }
       }
-      // console.log('44444');
-      // console.log(res);
       wx.cloud.callFunction({
         name: 'editUserAddr',
         data: {
@@ -74,13 +70,10 @@ Page({
       this.setData({
         addressDetail: res
       })
-      // console.log('3333');
-      // console.log(this.data.addressDetail);
     })
   },
 
   bindSave(e) {
-    console.log(e);
     const user_id = this.data.openid;
     const consignee_name = e.detail.value.consignee_name;
     const consignee_phone = e.detail.value.consignee_phone;
@@ -127,8 +120,6 @@ Page({
       //获取原来用户的地址数组-将数据增加到address表-更新用户表中用户的数据
       //第一个添加的地址默认为选中,后面的默认不选中
       user.getAddressId(this.data.openid).then((res) => {
-        // console.log('33333');
-        // console.log(res);
         // const old_addressId = res;
         if (res.length < 1) {
           data.isSelected = true;
@@ -151,8 +142,6 @@ Page({
             address_id: res,
             new_addressId: array
           })
-          // console.log('111111');
-          // console.log(res);
         }).then(() => {
           const data1 = {
             user_address_id: this.data.new_addressId
@@ -197,7 +186,6 @@ Page({
         wx.showLoading({
           title: '保存中',
         })
-        // console.log('haha');
         wx.cloud.callFunction({
           name: 'editAddress',
           data: {
@@ -249,7 +237,6 @@ Page({
       })
       this._getAddressDetail(id);
     }
-    // console.log(this.data.type);
     this.setData({
       isLogin: getApp().isLogin,
       openid: getApp().openid
@@ -261,8 +248,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log('2222222');
-    // console.log(options);
     const type = options.type;
     const id = options.id;
     this.ininData(type,id);

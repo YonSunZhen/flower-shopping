@@ -24,7 +24,6 @@ Page({
         files: this.data.files.concat(img), //拼接数组必须用这个concat返回一个新数组
         oldFiles: this.data.oldFiles.concat(img)
       })
-      console.log(this.data.files);
     })
   },
 
@@ -43,8 +42,6 @@ Page({
             showCancel: false,
             success: function (res) {
               if (res.confirm) {
-                // console.log('用户点击确定');
-                // console.log(that.data.files);
               }
             }
           });
@@ -98,11 +95,9 @@ Page({
     //暂时只能用于比较数组中只有一项元素
     if (this.data.files.toString() === this.data.oldFiles.toString()) {
       promiseArr.push(new Promise((resolve,reject) => {
-        console.log("没有改图");
-        resolve()
+        resolve();
       }))
     }else {
-      console.log("改图了");
       for (let i = 0; i < this.data.files.length; i++) {
         promiseArr.push(new Promise((resolve, reject) => {
           let item = this.data.files[i];
@@ -112,7 +107,6 @@ Page({
             cloudPath: new Date().getTime() + suffix, // 上传至云端的路径
             filePath: item, // 小程序临时文件路径
             success: res => {
-              // console.log(res);
               //记录服务器中图片的云id(路径)
               this.setData({
                 fileIds: res.fileID
@@ -132,7 +126,6 @@ Page({
         categroy_name: this.data.categroy_name,
         categroy_img: this.data.fileIds
       }
-      // console.log(data);
       wx.cloud.callFunction({
         name: 'editCategroy',
         data: {
@@ -166,8 +159,6 @@ Page({
       categroy_id: options.id
     })
     this.getDetail(this.data.categroy_id);
-    // console.log('99999999');
-    // console.log(this.data.categroy_id);
   },
 
   /**

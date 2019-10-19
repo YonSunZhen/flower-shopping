@@ -13,7 +13,6 @@ Page({
   },
 
   checkboxChange: function (e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value);
     this.setData({
       selectedProduct: e.detail.value
     })
@@ -28,7 +27,6 @@ Page({
         }
       }
     }
-    // console.log(checkboxItems);
 
     this.setData({
       productItems: checkboxItems
@@ -63,7 +61,6 @@ Page({
         showCancel: false,
         success: function (res) {
           if (res.confirm) {
-            // console.log('用户点击确定');
           }
         }
       });
@@ -115,8 +112,6 @@ Page({
   //点击编辑按钮跳转
   editProduct(e) {
     const id = e.target.dataset.id;
-    // console.log(e);
-    console.log(id);
     wx.navigateTo({
       url: `../editProduct/editProduct?id=${id}`,
     })
@@ -175,7 +170,6 @@ Page({
       pageIndex: this.data.pageIndex + 1
     })
     const oldProductItems = this.data.productItems;
-    console.log('pageIndex' + this.data.pageIndex);
     this._getAllProduct(this.data.pageIndex, this.data.pageSize,true);
     if (oldProductItems.length == this.data.productItems.length) {
       wx.showToast({

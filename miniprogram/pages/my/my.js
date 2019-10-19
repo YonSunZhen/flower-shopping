@@ -16,8 +16,6 @@ Page({
   },
 
   login: function(event) {
-    console.log('点击了登录');
-    // console.log(JSON.parse(event.detail.rawData).nickName);
     this.setData({
       username: JSON.parse(event.detail.rawData).nickName
     })

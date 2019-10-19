@@ -68,8 +68,7 @@ Page({
           files: this.data.files.concat(img), //拼接数组必须用这个concat返回一个新数组
           oldFiles: this.data.oldFiles.concat(img)
         })
-        console.log(res);
-        resolve()
+        resolve();
       })
     })
   },
@@ -103,7 +102,6 @@ Page({
             this.setData({
               showStateStr: this.data.stateList[i]
             })
-            console.log(this.data.showStateStr);
           }else{
           }
         }
@@ -127,8 +125,7 @@ Page({
             showCancel: false,
             success: function (res) {
               if (res.confirm) {
-                // console.log('用户点击确定');
-                // console.log(that.data.files);
+
               }
             }
           });
@@ -179,11 +176,9 @@ Page({
     //暂时只能用于比较数组中只有一项元素
     if (this.data.files.toString() === this.data.oldFiles.toString()) {
       promiseArr.push(new Promise((resolve, reject) => {
-        console.log("没有改图");
-        resolve()
+        resolve();
       }))
     } else {
-      console.log("改图了");
       for (let i = 0; i < this.data.files.length; i++) {
         promiseArr.push(new Promise((resolve, reject) => {
           let item = this.data.files[i];
@@ -262,7 +257,6 @@ Page({
     this.setData({
       product_id: options.id
     })
-    console.log(this.data.product_id);
     // this._getProductDetail(this.data.product_id);
     // this._getAllCategroy();
     // this.initCateStat();

@@ -45,7 +45,6 @@ Page({
           goodSelected.push(this.data.goodsList[i]);
         }
       }
-      console.log(goodSelected);
       //将选中的数据存储到本地缓存数据中
       wx.setStorageSync('goodLists', goodSelected);
       wx.navigateTo({
@@ -118,7 +117,6 @@ Page({
                 })
               }
             })
-            console.log(this.data.goodsList);
           }
         }
       })
@@ -194,7 +192,6 @@ Page({
 
   //选中正常的商品
   selectTap(e) {
-    console.log(e);
     const index = e.currentTarget.dataset.index;
     const str = `goodsList[${index}].checked`;
     if (index !== "" && index != null){
@@ -203,7 +200,6 @@ Page({
       })
     }
     this.getTotalPrice();
-    // console.log(this.data.goodsList);
     //判断是否全选了
     let allSelectState = 1;//(1表示全选,0表示未全选)
     for(let i = 0; i < this.data.goodsList.length; i++) {
@@ -240,7 +236,6 @@ Page({
 
   //增加选择的数量
   jiaBtnTap(e) {
-    console.log(e);
     const index = e.currentTarget.dataset.index;
     const product_surplus = e.currentTarget.dataset.order;
     if (this.data.goodsList[index].order_quantity < product_surplus) {
@@ -288,7 +283,6 @@ Page({
 
   //减少选择的数量
   jianBtnTap(e) {
-    console.log(e);
     const index = e.currentTarget.dataset.index;
     if (this.data.goodsList[index].order_quantity > 1) {
       wx.showLoading({
@@ -296,7 +290,6 @@ Page({
       })
       var currentNum = this.data.goodsList[index].order_quantity;
       currentNum--;
-      // console.log(currentNum); 
       const str = `goodsList[${index}].order_quantity`;
       this.setData({
         [str]: currentNum
@@ -323,8 +316,6 @@ Page({
           newCarts: newCarts
         }
       }).then((res) => {
-        // console.log('66666');
-        // console.log(res);
         if (res.result.stats.updated > 0) {
           wx.hideLoading();
           // wx.showToast({
@@ -353,28 +344,21 @@ Page({
         wx.showLoading({
           title: '加载中',
         })
-        console.log(res);
         const productList = JSON.parse(JSON.stringify(res.data[0].cart_products));
         // this.setGoodsList(productList);
-        console.log("购物车数据");
-        console.log(productList);
         let promiseArr = [];
         for (let i = 0; i < productList.length; i++) {
           promiseArr.push(new Promise((resolve, reject) => {
             product.getOneProduct(productList[i].product_id).then((res) => {
-              // console.log('000000');
-              // console.log(res);
               //找不到数据
               if (res.length < 1) {
                 productList[i].product_state = 0;
                 productList[i].checked = false;
                 // Object.assign(productList[i], res);
-                console.log('商品已删除');
               } else if (res[0].product_state == 0) {
                 // productList[i].isDel = false;
                 productList[i].checked = false;
                 Object.assign(productList[i], res[0]);
-                console.log('商品已下架');
               } else {
                 // productList[i].isDel = false;
                 productList[i].checked = true;
@@ -390,13 +374,9 @@ Page({
         }
 
         Promise.all(promiseArr).then(() => {
-          // console.log('333333');
-          // console.log(productList);
           this.setData({
             goodsList: productList
           })
-          console.log('111111');
-          console.log(this.data.goodsList);
           this.getTotalPrice();
           //初始化allSelect
           for(let i = 0; i < this.data.goodsList.length; i++) {
@@ -404,14 +384,9 @@ Page({
               this.setData({
                 allSelect: false
               })
-              console.log('222222');
             }
           }
-          console.log('333333');
-          console.log(this.data.allSelect);
           wx.hideLoading();
-          // console.log('22222222');
-          // console.log(this.data.goodsList);
         })
       }
     })
@@ -422,10 +397,6 @@ Page({
     this.setData({
       goodsList: goodsList
     });
-    // console.log(this.data.isLogin);
-    // console.log(this.data.goodsList.length);
-    // console.log('-------');
-    // console.log(this.data.goodsList);
   },
 
   //点击去逛逛
@@ -440,7 +411,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('页面加载');
     wx.setNavigationBarTitle({
       title: '购物车',
     })
@@ -464,7 +434,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log('页面显示');
     this.setData({
       allSelect: true
     })

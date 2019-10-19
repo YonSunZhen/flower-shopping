@@ -69,7 +69,7 @@ App({
                   }
                 })
               })
-              console.log(res);
+              // console.log(res);
               console.log("已经授权登录");
             }
           });
