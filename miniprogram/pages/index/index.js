@@ -18,12 +18,28 @@ Page({
     categroyList: [], // 商品类型列表
     productList: [], // 商品列表
     productRecommend: [],
-    selectId: -1 //用于切换选择类型时的颜色(默认不选中)
+    selectId: 0 //用于切换选择类型时的颜色(默认选中第一个类别)
   },
 
   //点击选择类型时
   selectCategroy(e) {
     const categroyId = e.currentTarget.dataset.categroyid;
+    product.getProductsByCateId(categroyId).then((res) => {
+      this.setData({
+        productList: res.data
+      })
+      for (let i = 0; i < this.data.categroyList.length; i++) {
+        if (this.data.categroyList[i]._id === categroyId) {
+          this.setData({
+            selectId: i
+          })
+        }
+      }
+    })
+  },
+
+  // 根据类型id获取商品
+  getProductsById(categroyId) {
     product.getProductsByCateId(categroyId).then((res) => {
       this.setData({
         productList: res.data
@@ -141,9 +157,15 @@ Page({
 
   //监听页面显示
   onShow: function() {
+    let tempCatId = wx.getStorageSync('categroyId');
+    if (tempCatId) {
+      this.setData({
+        selectId: tempCatId
+      })
+    }
     this._getAllCategroy().then(res => {
-      // 首次加载默认获取第一种类型的商品
-      this._getProductByFirstCate();
+      let tempId = this.data.categroyList[this.data.selectId]._id;
+      this.getProductsById(tempId);
     });
     //分页获取数据暂时没弄
     // this._getAllProduct(1, 100);
@@ -153,9 +175,7 @@ Page({
 
   //当页面隐藏时
   onHide() {
-    this.setData({
-      selectId: -1
-    })
+    wx.setStorageSync('categroyId', this.data.selectId);
   }
 
 })
