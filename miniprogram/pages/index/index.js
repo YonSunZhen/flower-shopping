@@ -162,6 +162,10 @@ Page({
       this.setData({
         selectId: tempCatId
       })
+    } else {
+      this.setData({
+        selectId: 0
+      })
     }
     this._getAllCategroy().then(res => {
       let tempId = this.data.categroyList[this.data.selectId]._id;

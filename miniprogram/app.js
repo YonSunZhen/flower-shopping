@@ -79,5 +79,9 @@ App({
       }
     })
 
+  },
+  // 当小程序进入后台时清除缓存
+  onHide() {
+    wx.clearStorage();
   }
 })
